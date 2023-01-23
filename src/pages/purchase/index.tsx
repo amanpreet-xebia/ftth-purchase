@@ -2,7 +2,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { FiberPlanDTO } from "../../interface/types";
 import getFiberPlans from "../../dataMassaging/fiberPlans/getFiberPlans";
-import { useSearchParams, useRouter } from "next/navigation";
+import { useRouter } from "next/router";
 import EmptyScreen from "../../components/emptyScreen";
 import AppContext from "../../AppContext";
 import AppRoutes from "../../constants/appRoutes";
@@ -22,13 +22,11 @@ export default function PurchaseRedirect() {
 
   const { setOpen, setAlertMsg, setSeverity } = useContext(AlertContext);
 
-  const router = useRouter();
   const [pageError, setPageError] = useState(false);
 
-  const searchParams = useSearchParams();
-
-  const planId = searchParams.get("planId");
-  const selectedLanguage = searchParams.get("lang");
+   const router = useRouter()
+   console.log('lllllllkkkkkk', router);
+  const { planId, lang: selectedLanguage } = router.query
 
   useEffect(() => {
     if (selectedLanguage === "ar" || selectedLanguage === "en") {
@@ -39,7 +37,7 @@ export default function PurchaseRedirect() {
     }
   }, [selectedLanguage]);
   if (!planId) {
-    // window.location.href = `https://salam.sa/${selectedLanguage}/personal`;
+     // window.location.href = `https://salam.sa/${selectedLanguage}/personal`;
   } else {
     if (typeof window !== "undefined") {
       localStorage.setItem("planId", `${planId}`);
@@ -47,7 +45,7 @@ export default function PurchaseRedirect() {
     }
   }
 
-  const fetchFiberPlans = async () => {
+  const fetchFiberPlans = async (planId: any) => {
     const { status, msg, data } = await getFiberPlans();
     if (status) {
       let fiberPlan: FiberPlanDTO | undefined;
@@ -56,14 +54,15 @@ export default function PurchaseRedirect() {
           fiberPlan = plan;
         }
       });
-
+      console.log(planId, 'ppppppppppppppp', fiberPlan)
       if (fiberPlan) {
         value.setLocale(selectedLanguage == "en" ? "en" : "ar");
         router.push(AppRoutes.fiberRegistration);
         setOrderID(`${planId}`);
       } else {
+        console.log('eeeeeerrrrrrrrr')
         setPageError(true);
-        // window.location.href = `https://salam.sa/${selectedLanguage}/personal`;
+         // window.location.href = `https://salam.sa/${selectedLanguage}/personal`;
       }
     } else {
       setOpen(true);
@@ -74,7 +73,10 @@ export default function PurchaseRedirect() {
   };
 
   useEffect(() => {
-    if (planId || planId?.length !== 0) fetchFiberPlans();
+    if (planId || planId?.length !== 0) {
+      
+      fetchFiberPlans(planId);
+    }
   }, [planId]);
 
   if (pageError)

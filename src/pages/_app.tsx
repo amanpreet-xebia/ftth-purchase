@@ -11,7 +11,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import AuthTokenProvider from '../context/alertContext/AlertContext';
 import AuthToken from '../context/AuthToken';
 
-// import Spinner from '../components/common/spinner/spinner';
+import Spinner from '../components/common/spinner/spinner';
 import Head from 'next/head';
 import Images from '../components/images';
 import '../styles/myCss.css';
@@ -78,7 +78,7 @@ export default function App({ Component, pageProps }: AppProps) {
               className="flex flex-col min-h-screen justify-between font-inter relative"
               dir={locale === 'en' ? 'ltr' : 'rtl'}
             >
-              {/* <Spinner /> */}
+              <Spinner />
               <Navbar></Navbar>
               <div className="my-20 md:my-0 md:h-[calc(100vh-284px)] lg:min-h-[800px] md:h-full pb-4">
                 <main>

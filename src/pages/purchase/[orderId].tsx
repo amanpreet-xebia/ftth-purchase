@@ -1,17 +1,12 @@
-/* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 "use client";
 
 import React, { useContext, useEffect, useState } from "react";
 import CircularLoading from "../../components/circularLoading";
 import AppRoutes from "../../constants/appRoutes";
-// import { selectFiberPlans } from '../../containers/plans/slice/fiberPlanSlice';
 import { AuthTokenContext } from "../../context/AuthToken";
 import fiberPendingNewOrder from "../../dataMassaging/fiberPlans/fiberPendingNewOrder";
 import { fiberOrderStatesRoute } from "../../constants/routeNavigationAccountState";
-// import { setIsArabic } from '../../constants/uiStateSlice';
-// import { useAppDispatch } from '../../hooks/useAppDispatch';
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/router";
 import { AlertContext } from "../../context/alertContext/AlertContext";
 import AppContext from "../../AppContext";
 
@@ -20,13 +15,11 @@ export default function ContinuePurchase(props: any) {
   const value = useContext(AppContext);
   const navigation = useRouter();
   const { setOrderID } = useContext(AuthTokenContext);
-  const {
-    params: { orderId },
-    searchParams: { lang, token },
-  } = props;
-  const [selectedOrderId, setSelectedOrderId] = useState(orderId);
+  
+  const router = useRouter()
+  const { orderId, lang, token } = router.query
 
-  // localStorageSet(LocalStorageKey.selectedLanguage, lang);
+  const [selectedOrderId, setSelectedOrderId] = useState(orderId);
 
   useEffect(() => {
     if (lang === "ar" || lang === "en") {
@@ -59,7 +52,7 @@ export default function ContinuePurchase(props: any) {
           setSeverity("error");
           // navigation.push(AppRoutes.selectFiberPlan);
           const selectedLanguage = lang || "en";
-          // window.location.href = `https://salam.sa/${selectedLanguage}/personal`;
+          window.location.href = `https://salam.sa/${selectedLanguage}/personal`;
         }
       }
     })();
