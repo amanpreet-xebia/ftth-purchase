@@ -1,14 +1,6 @@
+'use client';
 import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
-
-// export default function App({ Component, pageProps }: AppProps) {
-//   return <Component {...pageProps} />
-// }
-
-
-/* eslint-disable react/react-in-jsx-scope */
-'use client';
-
 import Navbar from '../common/Navbar';
 import Footer from '../common/Footer';
 import { useState, useEffect } from 'react';
@@ -29,6 +21,20 @@ export default function App({ Component, pageProps }: AppProps) {
   const [locale, setLocale] = useState(storedLang);
   const [user, setUser] = useState({});
   const translation : any = translations;
+
+  const [showing, setShowing] = useState(false);
+
+  useEffect(() => {
+
+    setShowing(true);
+
+  }, []);
+
+  if (!showing) {
+
+    return null;
+
+  }
   // const userData: string = sessionStorage.getItem('UserData') || '';
   // setUser(userData);
   // useEffect(() => {
