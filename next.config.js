@@ -3,6 +3,9 @@
 // eslint-disable-next-line no-undef
 module.exports = {
   reactStrictMode: true,
+  images: {
+    unoptimized: true,
+  },
   env: {
     API_BASE_LOCAL_URL: 'http://165.227.158.208/api',
     API_BASE_DEV_URL: 'http://165.227.158.208/api',
@@ -14,5 +17,5 @@ module.exports = {
       use: '@svgr/webpack',
     });
     return config;
-  }
+  },
 };

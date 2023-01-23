@@ -169,12 +169,12 @@ const fiberRegistration = () => {
   return (
     <div className="mt-0">
       <div className={'flex flex-col'}>
-        <div className=" dyn-card-margin dyn-card-width w-full  self-center dyn-mt"></div>
+        <div className=" dyn-card-margin w-full md:w-5/6 lg:w-3/5 xl:w-1/2  self-center dyn-mt"></div>
         <div className=" w-full  grid  place-items-center dyn-card-margin text-white">
           <div className="flex  flex-col dyn-mt items-stretch md:w-[70%]">
             <NoticeCard text={registerationHeaderNotification}></NoticeCard>
           </div>
-          <div className=" dyn-card-width bg-salam-blue dyn-mt dyn-card-pading rounded-2xl ">
+          <div className=" w-full md:w-5/6 lg:w-3/5 xl:w-1/2 bg-salam-blue dyn-mt dyn-card-pading rounded-2xl ">
             {errorMsgListRes && Object.keys(errorMsgListRes).length > 0 && (
               <div className="border-solid rounded-md border-rose-200 bg-rose-200 p-3 pl-4">
                 <ul className="list-disc text-red-900 pl-2">

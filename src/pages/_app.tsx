@@ -1,6 +1,7 @@
 'use client';
-import '@/styles/globals.css'
-import type { AppProps } from 'next/app'
+// import '@/styles/globals.css';
+import '../styles/globals.css';
+import type { AppProps } from 'next/app';
 import Navbar from '../common/Navbar';
 import Footer from '../common/Footer';
 import { useState, useEffect } from 'react';
@@ -16,24 +17,22 @@ import Head from 'next/head';
 import Images from '../components/images';
 import '../styles/myCss.css';
 export default function App({ Component, pageProps }: AppProps) {
-
-  const storedLang : string = typeof window !== 'undefined' ? localStorage.getItem('selectedLanguage') || 'en' : "en"
+  const storedLang: string =
+    typeof window !== 'undefined'
+      ? localStorage.getItem('selectedLanguage') || 'en'
+      : 'en';
   const [locale, setLocale] = useState(storedLang);
   const [user, setUser] = useState({});
-  const translation : any = translations;
+  const translation: any = translations;
 
   const [showing, setShowing] = useState(false);
 
   useEffect(() => {
-
     setShowing(true);
-
   }, []);
 
   if (!showing) {
-
     return null;
-
   }
   // const userData: string = sessionStorage.getItem('UserData') || '';
   // setUser(userData);

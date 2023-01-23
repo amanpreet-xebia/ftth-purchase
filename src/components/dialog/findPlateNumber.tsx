@@ -26,14 +26,23 @@ export default function FindPlateNumber(props: FindPlateNumberProps) {
                 className="flex-none h-10 w-10 fill-primary stroke-primary"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
-                strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                strokeWidth={2}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M6 18L18 6M6 6l12 12"
+                />
               </svg>
             </label>
           </div>
           <div className="md:px-12 px-0">
             <div className="flex w-full justify-center">
-              <Image className="object-cover" src={Images.plat_location} alt="bg" />
+              <img
+                className="object-cover"
+                src={Images.plat_location}
+                alt="bg"
+              />
             </div>
           </div>
         </div>

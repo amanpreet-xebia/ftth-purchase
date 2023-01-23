@@ -4,10 +4,7 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
-  
-  .text-gradient {
+.text-gradient {
   background: radial-gradient(
     64.18% 64.18% at 71.16% 35.69%,
     #def9fa 0.89%,
@@ -36,15 +33,29 @@
 }
 
 .bg-black-gradient {
-  background: linear-gradient(144.39deg, #ffffff -278.56%, #6d6d6d -78.47%, #11101d 91.61%);
+  background: linear-gradient(
+    144.39deg,
+    #ffffff -278.56%,
+    #6d6d6d -78.47%,
+    #11101d 91.61%
+  );
 }
 
 .bg-black-gradient-2 {
-  background: linear-gradient(-168.39deg, #ffffff -278.56%, #6d6d6d -78.47%, #11101d 91.61%);
+  background: linear-gradient(
+    -168.39deg,
+    #ffffff -278.56%,
+    #6d6d6d -78.47%,
+    #11101d 91.61%
+  );
 }
 
 .bg-gray-gradient {
-  background: linear-gradient(153.47deg, rgba(255, 255, 255, 0) -341.94%, #14101d 95.11%);
+  background: linear-gradient(
+    153.47deg,
+    rgba(255, 255, 255, 0) -341.94%,
+    #14101d 95.11%
+  );
 }
 
 .bg-discount-gradient {
@@ -251,4 +262,54 @@ input:checked + div svg {
   position: absolute;
   top: 40%;
   left: 50%;
+}
+.datePickerStyleCreditCard {
+  margin-top: 7px !important;
+  height: 53px;
+  border-radius: 11px;
+  width: 100%;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  background: #fff;
+}
+
+.selectDropDown {
+  height: 51px;
+  border-radius: 11px !important;
+  font-size: 0.875rem !important;
+  line-height: 1.25rem !important;
+  background: #fff;
+  width: 100%;
+}
+
+.btn-accent:hover {
+  background: #dcdcdc;
+  border-color: #dcdcdc;
+}
+
+.AddedBtnBgColor {
+  background: #06ae42;
+  border-color: #06ae42;
+}
+
+.removedBtnBgColor {
+  background: #dcdcdc;
+  border-color: #dcdcdc;
+}
+
+.onFilledStyle:hover {
+  background: #06ae42;
+  border-color: #06ae42;
+}
+.datePickerStyle {
+  height: 50px;
+  border-radius: 11px;
+  width: 100%;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  background: #fff;
+}
+
+.highlightTime {
+  background: #06ae42;
 }

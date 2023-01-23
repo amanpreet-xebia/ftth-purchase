@@ -1,16 +1,25 @@
 /* eslint-disable react/no-unescaped-entities */
-import React from 'react';
+import React, { useContext } from 'react';
 import StadiumButton from '../../components/stadiumButton';
-import '../../style/style.css';
-import { useTranslation } from 'react-i18next';
+// import '../../style/style.css';
+import AppContext from '../../AppContext';
 
 function TermsAndCondition(props: TermsAndConditionProp) {
-  const { t } = useTranslation();
+  const value = useContext(AppContext);
+  const { locale } = value.state;
+  const {
+    page: { purchaseFiberPlan },
+    confirm,
+  } = value.state.languages;
+
   return (
     <>
       {props.showModal ? (
         <>
-          <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none mx-2">
+          <div
+            id="english_modal"
+            className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none mx-2"
+          >
             <div className="relative w-auto my-6 mx-10 md:mx-auto max-w-min">
               <div className="border-0 rounded-2xl shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none pt-14">
                 {/*body*/}
@@ -35,11 +44,14 @@ function TermsAndCondition(props: TermsAndConditionProp) {
                     </svg>
                   </div>
                   <div className="  text-center text-2xl font-bold ">
-                    {t('terms_conditions')}
+                    {purchaseFiberPlan?.termsConditions}
                   </div>
                 </div>
                 <div className=" overflow-scroll-gradient text-salamblue">
-                  <div className=" px-10  py-8 font-normal overflow-y-scroll h-685 leading-8 tracking-normal">
+                  <div
+                    className=" px-10  py-8 font-normal overflow-y-scroll h-685 leading-8 tracking-normal"
+                    style={{ height: '685px' }}
+                  >
                     <h2
                       className="h4 mb-5 aos-init aos-animate text-salamblue font-medium text-xl"
                       data-aos="fade-left"
@@ -300,7 +312,7 @@ function TermsAndCondition(props: TermsAndConditionProp) {
                 <div className=" self-center  mx-10 mb-7 mt-5">
                   <div className="w-64">
                     <StadiumButton
-                      text={t('yes_accept')}
+                      text={purchaseFiberPlan?.yesAccept}
                       onClick={() => props.onClick(true)}
                     ></StadiumButton>
                   </div>

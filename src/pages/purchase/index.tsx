@@ -1,16 +1,16 @@
-"use client";
-import React, { useContext, useEffect, useState } from "react";
-import { FiberPlanDTO } from "../../interface/types";
-import getFiberPlans from "../../dataMassaging/fiberPlans/getFiberPlans";
-import { useRouter } from "next/router";
-import EmptyScreen from "../../components/emptyScreen";
-import AppContext from "../../AppContext";
-import AppRoutes from "../../constants/appRoutes";
-import { AlertContext } from "../../context/alertContext/AlertContext";
-import { AuthTokenContext } from "../../context/AuthToken";
+'use client';
+import React, { useContext, useEffect, useState } from 'react';
+import { FiberPlanDTO } from '../../interface/types';
+import getFiberPlans from '../../dataMassaging/fiberPlans/getFiberPlans';
+import { useRouter } from 'next/router';
+import EmptyScreen from '../../components/emptyScreen';
+import AppContext from '../../AppContext';
+import AppRoutes from '../../constants/appRoutes';
+import { AlertContext } from '../../context/alertContext/AlertContext';
+import { AuthTokenContext } from '../../context/AuthToken';
 
 export default function PurchaseRedirect() {
-  if (typeof window !== "undefined") {
+  if (typeof window !== 'undefined') {
     localStorage.clear();
   }
 
@@ -24,24 +24,24 @@ export default function PurchaseRedirect() {
 
   const [pageError, setPageError] = useState(false);
 
-   const router = useRouter()
-   console.log('lllllllkkkkkk', router);
-  const { planId, lang: selectedLanguage } = router.query
+  const router = useRouter();
+  console.log('lllllllkkkkkk', router);
+  const { planId, lang: selectedLanguage } = router.query;
 
   useEffect(() => {
-    if (selectedLanguage === "ar" || selectedLanguage === "en") {
-      value.setLocale(selectedLanguage == "en" ? "en" : "ar");
-      if (typeof window !== "undefined") {
-        localStorage.setItem("selectedLanguage", selectedLanguage);
+    if (selectedLanguage === 'ar' || selectedLanguage === 'en') {
+      value.setLocale(selectedLanguage == 'en' ? 'en' : 'ar');
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('selectedLanguage', selectedLanguage);
       }
     }
   }, [selectedLanguage]);
   if (!planId) {
-     // window.location.href = `https://salam.sa/${selectedLanguage}/personal`;
+    // window.location.href = `https://salam.sa/${selectedLanguage}/personal`;
   } else {
-    if (typeof window !== "undefined") {
-      localStorage.setItem("planId", `${planId}`);
-      localStorage.setItem("selectedLanguage", `${selectedLanguage}`);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('planId', `${planId}`);
+      localStorage.setItem('selectedLanguage', `${selectedLanguage}`);
     }
   }
 
@@ -54,27 +54,26 @@ export default function PurchaseRedirect() {
           fiberPlan = plan;
         }
       });
-      console.log(planId, 'ppppppppppppppp', fiberPlan)
+      console.log(planId, 'ppppppppppppppp', fiberPlan);
       if (fiberPlan) {
-        value.setLocale(selectedLanguage == "en" ? "en" : "ar");
+        value.setLocale(selectedLanguage == 'en' ? 'en' : 'ar');
         router.push(AppRoutes.fiberRegistration);
         setOrderID(`${planId}`);
       } else {
-        console.log('eeeeeerrrrrrrrr')
+        console.log('eeeeeerrrrrrrrr');
         setPageError(true);
-         // window.location.href = `https://salam.sa/${selectedLanguage}/personal`;
+        // window.location.href = `https://salam.sa/${selectedLanguage}/personal`;
       }
     } else {
       setOpen(true);
       setAlertMsg(msg);
-      setSeverity("error");
+      setSeverity('error');
       setPageError(true);
     }
   };
 
   useEffect(() => {
     if (planId || planId?.length !== 0) {
-      
       fetchFiberPlans(planId);
     }
   }, [planId]);

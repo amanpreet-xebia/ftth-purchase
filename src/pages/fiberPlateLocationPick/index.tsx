@@ -4,25 +4,23 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { DropDownItem } from '../../components/dropdownSelector';
 import AppRoutes from '../../constants/appRoutes';
-// import { AlertContext } from '../../context/alertContext/AlertContext';
-// import { AuthTokenContext } from '../../context/AuthToken';
+
 import fiberNewOrder from '../../dataMassaging/fiberPlans/fiberNewOrder';
 import fiberPendingNewOrder from '../../dataMassaging/fiberPlans/fiberPendingNewOrder';
-//import fiberPlanServicable from '../../dataMassaging/fiberPlans/fiberPlanServicable';
-//import { FiberServicableResponse } from '../../dataMassaging/fiberPlans/type';
-//import { useAppSelector } from '../../hooks/useAppSelector';
-//import { NOT_FOUND, SUCCESS } from '../../services/apisConstants';
-//import { selectedFiberPlan } from '../plans/slice/fiberPlanSlice';
-import { fiberOrderStatesRoute } from '../../constants/routeNavigationAccountState';
+import {
+  fiberOrderStatesRoute,
+  getFiberRoutKey,
+} from '../../constants/routeNavigationAccountState';
 import FindPlateNumber from '../../components/dialog/findPlateNumber';
 import StadiumButton from '../../components/stadiumButton';
 import InputField from '../../components/inputField';
 import AppContext from '../../AppContext';
 import Label, { LabelStyle } from '../../components/Label';
 import SelectComponent from '../../dataMassaging/common/SelectComponent';
-import '../../styles/creditDebitStyle.css';
+// import './creditDebitStyle.css';
 import { AuthTokenContext } from '../../context/AuthToken';
 import { AlertContext } from '../../context/alertContext/AlertContext';
+import backRestrict from '../utilities/backRestrict';
 
 export default function fiberPlateLocationPick() {
   const value = useContext(AppContext);
@@ -45,8 +43,14 @@ export default function fiberPlateLocationPick() {
   const navigator = useRouter();
 
   useEffect(() => {
+    // if (
+    //   localStorage.getItem('state') !==
+    //   getFiberRoutKey(AppRoutes.fiberPlateLocationPick)
+    // )
+    //   window.history.forward();
+    backRestrict(AppRoutes.fiberPlateLocationPick);
     if (!localStorage.getItem('planId')) {
-      // window.location.href = `https://salam.sa/${locale || 'en'}/personal`;
+      window.location.href = `https://salam.sa/${locale || 'en'}/personal`;
     }
   }, [navigator]);
 
@@ -102,6 +106,7 @@ export default function fiberPlateLocationPick() {
 
     if (pendingOrder.data?.state?.trim()) {
       navigator.push(fiberOrderStatesRoute(pendingOrder.data?.state));
+      localStorage.setItem('state', pendingOrder.data?.state);
       return;
     } else {
       navigator.push(AppRoutes.fiberRegistration);
@@ -150,8 +155,8 @@ export default function fiberPlateLocationPick() {
   };
 
   return (
-    <div className=" w-full overflow-y-scroll  grid  place-items-center dyn-card-margin text-white">
-      <div className=" dyn-card-width bg-salam-blue dyn-mt dyn-card-pading rounded-2xl ">
+    <div className=" w-full overflow-y-scroll grid  place-items-center dyn-card-margin text-white">
+      <div className=" w-full md:w-5/6 lg:w-3/5 xl:w-1/2 bg-salam-blue dyn-mt dyn-card-pading rounded-2xl ">
         <Label
           label={fiberPlateLocation?.enterPlateDetails}
           style={LabelStyle.labelLarge}
