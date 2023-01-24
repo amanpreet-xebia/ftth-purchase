@@ -3,26 +3,22 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Disclosure } from '@headlessui/react';
 import React, { useEffect, useContext, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/router';
 import AppRoutes from '../constants/appRoutes';
 import { FiberPlanDTO } from '../interface/types';
 import fiberPendingNewOrder from '../dataMassaging/fiberPlans/fiberPendingNewOrder';
 import { AuthTokenContext } from '../context/AuthToken';
+import { AlertContext } from '../context/alertContext/AlertContext';
 
 const SelectedFiberPlanBottomSheet = () => {
-  //  const value = useContext(AppContext);
-  // let { locale } = value.state;
-  // let { page: {phoneVerification}, next, typeHere } = value.state.languages;
-
-  //const selectedPlan = useAppSelector(selectedFiberPlan);
-  // const { setOpen, setAlertMsg, setSeverity } = useContext(AlertContext);
+  const router = useRouter();
   const { orderID } = useContext(AuthTokenContext);
-  console.log('33333333', orderID);
-
+  const { setOpen, setAlertMsg, setSeverity } = useContext(AlertContext);
   const [selectedPlan, setSelectedPlan] = useState<any>(null);
 
   useEffect(() => {
-    (async () => {
+    if(!router?.route.split('/')[1].includes('purchase')) {
+      (async () => {
       const orderId = typeof window !== 'undefined' ? localStorage.getItem('orderId') : '';
 
       if (orderId) {
@@ -31,22 +27,15 @@ const SelectedFiberPlanBottomSheet = () => {
           '200_state_mobile_verification'
         );
         if (status) {
-          // data.selectedPlan = {
-          //   ...data?.selectedPlan,
-          //   addons: {
-          //     type: 'orbit',
-          //     title: 'Orbit Familiy Plan',
-          //     desc: 'Orbit Family Pack Free Upon Order',
-          //     price: 'Free'
-          //   }
-          // };
           setSelectedPlan(data?.selectedPlan);
         } else {
-          // setOpen(true);
-          // setAlertMsg(t('error_while_fetching_your_order'));
+          setOpen(true);
+          setAlertMsg("Error while fetching your order");
         }
       }
     })();
+    }
+    
   }, [orderID]);
 
   return (

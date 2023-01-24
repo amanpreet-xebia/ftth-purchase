@@ -312,4 +312,5 @@ input:checked + div svg {
 
 .highlightTime {
   background: #06ae42;
+  color: #fff;
 }

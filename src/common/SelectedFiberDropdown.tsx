@@ -3,27 +3,22 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Disclosure } from '@headlessui/react';
 import React, { useEffect, useContext, useState } from 'react';
-import { useRouter } from 'next/navigation';
 import AppRoutes from '../constants/appRoutes';
+import { useRouter } from 'next/router';
 import { FiberPlanDTO } from '../interface/types';
 import { AuthTokenContext } from '../context/AuthToken';
-
-// import {
-//   displayLandLineNumber,
-//   displayPriceByAdonType,
-//   editLabelByAdonType,
-//   imageByAdonType,
-//   labelAdonType
-// } from '../fiberPlanFeatureMap';
 import fiberPendingNewOrder from '../dataMassaging/fiberPlans/fiberPendingNewOrder';
+import { AlertContext } from '../context/alertContext/AlertContext';
 
 const SelectedFiberPlanDropdown = () => {
   //const selectedPlan = useAppSelector(selectedFiberPlan);
   const [selectedPlan, setSelectedPlan] = useState<any>(null);
+  const { setOpen, setAlertMsg, setSeverity } = useContext(AlertContext);
+  const router = useRouter();
   const { orderID } = useContext(AuthTokenContext);
-  console.log('222222222', orderID);
   useEffect(() => {
-    (async () => {
+    if(!router?.route.split('/')[1].includes('purchase')) { 
+      (async () => {
       const orderId = typeof window !== 'undefined' ? localStorage.getItem('orderId') : '';
       if (orderId) {
         const { status, data = {} } = await fiberPendingNewOrder(
@@ -31,22 +26,15 @@ const SelectedFiberPlanDropdown = () => {
           '200_state_mobile_verification'
         );
         if (status) {
-          // data.selectedPlan = {
-          //   ...data?.selectedPlan,
-          //   addons: {
-          //     type: 'orbit',
-          //     title: 'Orbit Familiy Plan',
-          //     desc: 'Orbit Family Pack Free Upon Order',
-          //     price: 'Free'
-          //   }
-          // };
           setSelectedPlan(data?.selectedPlan);
         } else {
-          // setOpen(true);
-          // setAlertMsg(t('error_while_fetching_your_order'));
+           setOpen(true);
+           setAlertMsg("Error while fetching your order");
         }
       }
     })();
+    }
+    
   }, [orderID]);
 
   return (

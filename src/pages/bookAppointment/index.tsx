@@ -57,6 +57,8 @@ export default function bookAppointment() {
       })();
     }
   }, []);
+
+
   const handleAppointment = async () => {
     if (!selTimeSlot) {
       setOpen(true);

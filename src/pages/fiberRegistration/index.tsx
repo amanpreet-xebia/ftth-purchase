@@ -1,18 +1,15 @@
 'use client';
 /* eslint-disable @typescript-eslint/no-empty-interface */
 import React, { useState, useContext, useEffect } from 'react';
-// import { Toaster } from 'react-hot-toast';
-// import { Navigate, useLocation, useNavigate, useParams } from 'react-router-dom';
+
 import InputField from '../../components/inputField';
 import Label, { LabelStyle } from '../../components/Label';
 import NoticeCard from '../../components/noticeCard';
 import StadiumButton from '../../components/stadiumButton';
 import AppRoutes from '../../constants/appRoutes';
 import checkEmptyVal from '../../dataMassaging/common/checkEmptyVal';
-// import { AlertContext } from '../context/alertContext/AlertContext';
-// import { UserStateContext } from '../context/UserStateContext';
+
 import createAccount from '../../dataMassaging/fiberReg/createAccount';
-// import { NewOrderRouteState } from '.../.../location/slice/types';
 import { fiberOrderStatesRoute } from '../../constants/routeNavigationAccountState';
 import { useRouter } from 'next/navigation';
 import AppContext from '../../AppContext';
@@ -47,46 +44,9 @@ const fiberRegistration = () => {
     storedPlanId = localStorage.getItem('planId') || '';
   }
 
-  // const createNewOrder = async () => {
-  //   const { status, msg, code, data } = await fiberNewOrder(
-  //     '',
-  //     `${localStorage.getItem('planId')}`,
-  //     '',
-  //     '1',
-  //     `${localStorage.getItem('orderId')}`
-  //   );
-  //   if (data?.orderId && status && code === 200) {
-  //     setOrderId(`${data?.orderId}`);
-  //     setOrderID(`${data?.orderId}`);
+  
 
-  //     localStorage.setItem('token', data?.token || '');
-  //     localStorage.setItem('orderId', `${data?.orderId}` || '');
-
-  //     if (true) {
-  //       // debugger;
-  //       navigate.push(fiberOrderStatesRoute(data?.state));
-  //       return;
-  //     } else {
-  //       navigate.push(AppRoutes.fiberRegistration);
-  //     }
-  //   } else {
-  //     setOpen(true);
-  //     setAlertMsg(msg);
-  //     setSeverity('error');
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   createNewOrder();
-  // }, []);
-
-  // const { t } = useTranslation();
-
-  // useEffect(() => {
-  //   (async () => {
-  //     console.log('lllll', await getUserDetails());
-  //   })();
-  // }, []);
+ 
   const registerFiberPlan = async () => {
     // if (!checkEmptyVal({ firstName, lastName, mobileNumber, email, userId })) {
     //   setOpen(true);
@@ -116,9 +76,10 @@ const fiberRegistration = () => {
       if (typeof window !== 'undefined') {
         localStorage.setItem('orderId', data?.orderId?.toString() || '');
       }
-      console.log(data);
-
       if (data?.state?.trim()) {
+        localStorage.setItem('token', `${data?.token}` || '');
+        localStorage.setItem('orderId', `${data?.orderId}` || '');
+        setOrderID(data?.orderId);
         navigate.push(fiberOrderStatesRoute(data?.state));
         return;
       } else {

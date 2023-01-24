@@ -15,7 +15,6 @@ import AuthToken from '../context/AuthToken';
 import Spinner from '../components/common/spinner/spinner';
 import Head from 'next/head';
 import Images from '../components/images';
-import '../styles/myCss.css';
 export default function App({ Component, pageProps }: AppProps) {
   const storedLang: string =
     typeof window !== 'undefined'

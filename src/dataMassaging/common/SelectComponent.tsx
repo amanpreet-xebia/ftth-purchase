@@ -5,7 +5,6 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 
 const SelectComponent = (props: any) => {
-  console.log('lllddd', props);
   const [selectedValue, setSelectedValue] = useState(props.defaultVal || '');
 
   const { handleEventChange, availableOption } = props;

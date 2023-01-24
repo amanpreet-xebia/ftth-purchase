@@ -101,6 +101,7 @@ export default function fiberPlateLocationPick() {
 
     if (pendingOrder.data?.state?.trim()) {
       navigator.push(fiberOrderStatesRoute(pendingOrder.data?.state));
+      localStorage.setItem('state', pendingOrder.data?.state);
       return;
     } else {
       navigator.push(AppRoutes.fiberRegistration);
