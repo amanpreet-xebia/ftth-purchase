@@ -66,7 +66,7 @@ function Navbar() {
         <div className="flex flex-wrap justify-between items-center md:px-44 w-full px-5">
           <Link
             href="/"
-            className={`absolute top-[7px] md:top-[10px]  ${
+            className={`absolute top-[7px] md:top-[10px] z-50  ${
               locale === 'en' ? 'md:left-12 right-0' : 'md:right-12 left-0'
             } z-10`}
           >
@@ -109,7 +109,11 @@ function Navbar() {
               locale == 'en' ? 'left-5' : 'right-5'
             }  z-10`}
           >
-            <button type="button" onClick={() => setNavbar(!navbar)}>
+            <button
+              type="button"
+              className={`${navbar ? 'hidden' : 'block'}`}
+              onClick={() => setNavbar(!navbar)}
+            >
               <img src="/images/menu-open.svg" alt="" />
             </button>
           </div>
