@@ -38,7 +38,7 @@ export default function FindPlateNumber(props: FindPlateNumberProps) {
           </div>
           <div className="md:px-12 px-0">
             <div className="flex w-full justify-center">
-              <img
+              <Image
                 className="object-cover"
                 src={Images.plat_location}
                 alt="bg"
