@@ -54,7 +54,7 @@ const PhoneVerification = () => {
   // }, []);
 
   useEffect(() => {
-    backRestrict(AppRoutes.fiberPlateLocationPick);
+    backRestrict();
     // if (
     //   localStorage.getItem('state') !==
     //   getFiberRoutKey(AppRoutes.phoneVerification)
@@ -98,7 +98,6 @@ const PhoneVerification = () => {
           state: { orderId: orderId, token: token },
         };
         navigation.push(fiberOrderStatesRoute(data!.state!));
-        localStorage.setItem('state', data!.state!);
       } else {
         setOpen(true);
         setAlertMsg(msg);

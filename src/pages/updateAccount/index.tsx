@@ -37,13 +37,8 @@ const updateAccount = () => {
     setEmail(value);
   };
   useEffect(() => {
-    backRestrict(AppRoutes.fiberPlateLocationPick);
+    backRestrict();
 
-    // if (
-    //   localStorage.getItem('state') !== getFiberRoutKey(AppRoutes.updateAccount)
-    // ) {
-    //   window.history.forward();
-    // }
     (async () => {
       const { status, msg, data } = await fiberPendingNewOrder(
         `${orderId}`,
@@ -75,7 +70,6 @@ const updateAccount = () => {
         state: { orderId: orderId, token: token },
       };
       navigator.push(fiberOrderStatesRoute(data!.state!));
-      localStorage.setItem('state', data!.state!);
     } else {
       // setOpen(true);
       // setAlertMsg(t(msg) || t('please_enter_a_valid_otp'));

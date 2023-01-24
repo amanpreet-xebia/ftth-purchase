@@ -33,14 +33,7 @@ export default function PurchaseFiberPlans() {
     typeof window !== 'undefined' ? localStorage.getItem('orderId') : '';
 
   useEffect(() => {
-    backRestrict(AppRoutes.fiberPlateLocationPick);
-
-    // if (
-    //   localStorage.getItem('state') !==
-    //   getFiberRoutKey(AppRoutes.purchaseFiberPlans)
-    // ) {
-    //   window.history.forward();
-    // }
+    backRestrict();
     (async () => {
       if (orderId) {
         const { status, msg, data } = await fiberPendingNewOrder(
