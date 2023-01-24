@@ -12,7 +12,6 @@ const fiberNewOrder = async (
   workflow: string,
   orderId: string
 ): Promise<responseType<FiberOrderResponse>> => {
-  console.log(orderId);
 
   return trackPromise(
     fiberPlansService

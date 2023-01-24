@@ -1,12 +1,12 @@
 /* eslint-disable no-unsafe-optional-chaining */
 import Link from 'next/link';
 import React, { useState, useContext } from 'react';
-// import Logo from './assets/logo.svg';
+import Logo from '../assets/logo.svg';
 import AppContext from '../AppContext';
 import Header from './Header';
 import DrawerSidePannel from './DrawerSidePannel';
 import DropDown from '../common/DropDown';
-//import { UserProfile } from '../components/UserProfile';
+import { UserProfile } from '../components/UserProfile';
 import SelectedFiberDropdown from '../common/SelectedFiberDropdown';
 
 function Navbar() {
@@ -70,10 +70,10 @@ function Navbar() {
               locale === 'en' ? 'md:left-12 right-0' : 'md:right-12 left-0'
             } z-10`}
           >
-            {/* <Logo /> */}
+            <Logo />
           </Link>
           <div
-            className={`absolute gap-20 w-screen  h-screen  top-0 left-0 bg-salam-blue md:hidden  items-center mx-auto z-10 ${
+            className={`absolute gap-20 w-screen  min-h-[1200px] top-0 left-0 bg-salam-blue md:hidden  items-center mx-auto z-10 ${
               navbar ? 'block' : 'hidden'
             }`}
           >
@@ -101,7 +101,7 @@ function Navbar() {
                 locale == 'en' ? 'right-0' : 'left-0'
               }`}
             >
-              {/* <UserProfile /> */}
+              <UserProfile />
             </div>
           </div>
           <div

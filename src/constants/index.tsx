@@ -309,6 +309,7 @@ export const translations = {
     },
     next: 'التالي',
     typeHere: 'اكتب هنا',
+    confirm: 'تأكيد',
     page: {
       registerationHeaderNotification:'رائع، خدمة الألياف الضوئية من سلام متوفرة في موقعك',
       enterDetails: 'أدخِل معلوماتك',
@@ -349,7 +350,6 @@ export const translations = {
         bookInstallationDate: 'الان احجز موعد للتركيب',
         availableDates: 'المواعيد المتاحة',
         chooseATimeslot: 'اختر وقت',
-        confirm: 'تأكيد',
         emptyScreen: {
           noAvailableTimeSlots: 'No Available Time Slots',
           noTimeSlotsAreAvailableAtThisLocation: 'No time slots are available at this moment',

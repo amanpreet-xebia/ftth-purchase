@@ -18,13 +18,12 @@ export default function SelectableLabel(props: any) {
           setSelectedTimeSlot(currentDate + '_' + value);
           onClickEvent(currentDate + '_' + value);
         }}
-        className={`bg-gray-50 border border-gray-300
+        className={`bg-gray-50 cursor-pointer border border-gray-300
             text-black text-lg rounded-lg focus:ring-accent
             focus:border-accent block w-full p-4
-            dark:text-white dark:focus:ring-accent
             focus:outline-accent font-light
             text-center hover:bg-accent hover:text-white
-            dark:focus:border-accent py-[17px] md:py-[15px] ${isSelected ? 'highlightTime' : ''}`}>
+            py-[17px] md:py-[15px] ${isSelected ? 'highlightTime' : ''}`}>
         {props.value}
       </div>
     </div>

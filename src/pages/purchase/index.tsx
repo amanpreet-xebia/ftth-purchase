@@ -9,10 +9,13 @@ import AppRoutes from '../../constants/appRoutes';
 import { AlertContext } from '../../context/alertContext/AlertContext';
 import { AuthTokenContext } from '../../context/AuthToken';
 
-export default function PurchaseRedirect() {
-  if (typeof window !== 'undefined') {
+export default function PurchaseRedirect({params}: any) {
+  if (typeof window !== "undefined") {
     localStorage.clear();
   }
+
+  const router = useRouter()
+  const { planId, lang:selectedLanguage } = router.query
 
   const value = useContext(AppContext);
   const { setOrderID } = useContext(AuthTokenContext);
@@ -22,30 +25,29 @@ export default function PurchaseRedirect() {
 
   const { setOpen, setAlertMsg, setSeverity } = useContext(AlertContext);
 
+  
   const [pageError, setPageError] = useState(false);
 
-  const router = useRouter();
-  console.log('lllllllkkkkkk', router);
-  const { planId, lang: selectedLanguage } = router.query;
-
-  useEffect(() => {
-    if (selectedLanguage === 'ar' || selectedLanguage === 'en') {
-      value.setLocale(selectedLanguage == 'en' ? 'en' : 'ar');
-      if (typeof window !== 'undefined') {
-        localStorage.setItem('selectedLanguage', selectedLanguage);
-      }
-    }
-  }, [selectedLanguage]);
-  if (!planId) {
-    // window.location.href = `https://salam.sa/${selectedLanguage}/personal`;
+   if (router?.isReady && !planId) {
+    window.location.href = `https://salam.sa/${selectedLanguage}/personal`;
   } else {
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('planId', `${planId}`);
-      localStorage.setItem('selectedLanguage', `${selectedLanguage}`);
+    if (typeof window !== "undefined") {
+      localStorage.setItem("planId", `${planId}`);
+      localStorage.setItem("selectedLanguage", `${selectedLanguage}`);
     }
   }
 
-  const fetchFiberPlans = async (planId: any) => {
+  useEffect(() => {
+    if (router?.isReady && (selectedLanguage === "ar" || selectedLanguage === "en")) {
+      value.setLocale(selectedLanguage == "en" ? "en" : "ar");
+      if (typeof window !== "undefined") {
+        localStorage.setItem("selectedLanguage", selectedLanguage);
+      }
+    }
+  }, [selectedLanguage]);
+ 
+
+  const fetchFiberPlans = async () => {
     const { status, msg, data } = await getFiberPlans();
     if (status) {
       let fiberPlan: FiberPlanDTO | undefined;
@@ -54,15 +56,13 @@ export default function PurchaseRedirect() {
           fiberPlan = plan;
         }
       });
-      console.log(planId, 'ppppppppppppppp', fiberPlan);
       if (fiberPlan) {
         value.setLocale(selectedLanguage == 'en' ? 'en' : 'ar');
         router.push(AppRoutes.fiberRegistration);
         setOrderID(`${planId}`);
       } else {
-        console.log('eeeeeerrrrrrrrr');
         setPageError(true);
-        // window.location.href = `https://salam.sa/${selectedLanguage}/personal`;
+        window.location.href = `https://salam.sa/${selectedLanguage}/personal`;
       }
     } else {
       setOpen(true);
@@ -73,9 +73,7 @@ export default function PurchaseRedirect() {
   };
 
   useEffect(() => {
-    if (planId || planId?.length !== 0) {
-      fetchFiberPlans(planId);
-    }
+    if (planId && planId?.length !== 0) fetchFiberPlans();
   }, [planId]);
 
   if (pageError)

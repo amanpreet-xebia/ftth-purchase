@@ -18,16 +18,18 @@ export default function ContinuePurchase(props: any) {
 
   const router = useRouter();
   const { orderId, lang, token } = router.query;
-
   const [selectedOrderId, setSelectedOrderId] = useState(orderId);
 
   useEffect(() => {
-    if (lang === 'ar' || lang === 'en') {
-      value.setLocale(lang == 'en' ? 'en' : 'ar');
-      if (typeof window !== 'undefined') {
-        localStorage.setItem('selectedLanguage', lang);
+    if(router?.isReady) {
+      if (lang === "ar" || lang === "en") {
+      value.setLocale(lang == "en" ? "en" : "ar");
+      if (typeof window !== "undefined") {
+        localStorage.setItem("selectedLanguage", lang);
       }
     }
+    }
+    
   }, [lang]);
 
   useEffect(() => {
@@ -37,9 +39,8 @@ export default function ContinuePurchase(props: any) {
           `${orderId}`,
           '200_state_mobile_verification'
         );
-
         if (status) {
-          if (typeof window !== 'undefined') {
+          if (typeof window != 'undefined') {
             localStorage.setItem('token', `${token}` || '');
             localStorage.setItem('orderId', `${orderId}` || '');
           }
@@ -56,11 +57,7 @@ export default function ContinuePurchase(props: any) {
         }
       }
     })();
-  }, [selectedOrderId]);
+  }, [orderId]);
 
-  return (
-    <>
-      <CircularLoading />
-    </>
-  );
+  return (!orderId && <CircularLoading />);
 }
