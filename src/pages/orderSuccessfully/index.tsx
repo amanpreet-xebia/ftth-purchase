@@ -5,7 +5,7 @@ import React, { useContext, useEffect } from 'react';
 import AppContext from '../../AppContext';
 import AppRoutes from '../../constants/appRoutes';
 import { getFiberRoutKey } from '../../constants/routeNavigationAccountState';
-import backRestrinct from '../utilities/backRestrict';
+import backRestrict from '../utilities/backRestrict';
 
 const orderSuccessfully = () => {
   const value = useContext(AppContext);
@@ -16,7 +16,7 @@ const orderSuccessfully = () => {
   const orderId =
     typeof window !== 'undefined' ? localStorage.getItem('orderId') : '';
   useEffect(() => {
-    backRestrinct(AppRoutes.fiberPlateLocationPick);
+    backRestrict();
     // if (
     //   localStorage.getItem('state') !==
     //   getFiberRoutKey(AppRoutes.orderSuccessfully)

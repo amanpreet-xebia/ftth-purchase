@@ -97,7 +97,6 @@ export default function CreditDebit({ planPrice }: any) {
 
         if (data?.state?.trim()) {
           navigate.push(fiberOrderStatesRoute(data?.state));
-          localStorage.setItem('state', data?.state);
 
           return;
         } else {

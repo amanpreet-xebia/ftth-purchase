@@ -39,7 +39,7 @@ const emailVerification = () => {
     typeof window !== 'undefined' ? localStorage.getItem('orderId') : '';
 
   useEffect(() => {
-    backRestrict(AppRoutes.fiberPlateLocationPick);
+    backRestrict();
     (async () => {
       const { status, msg, data } = await fiberPendingNewOrder(
         `${orderId}`,
@@ -73,7 +73,6 @@ const emailVerification = () => {
           state: { orderId: orderId, token: token },
         };
         navigation.push(fiberOrderStatesRoute(data!.state!));
-        localStorage.setItem('state', data!.state!);
       } else {
         setOpen(true);
         setAlertMsg(msg);

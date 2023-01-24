@@ -63,7 +63,6 @@ export default function PayViaSadad({ planPrice }: any) {
 
         if (data?.state?.trim()) {
           navigate.push(fiberOrderStatesRoute(data?.state));
-          localStorage.setItem('state', data?.state);
           return;
         } else {
           navigate.push(AppRoutes.bookAppointment);

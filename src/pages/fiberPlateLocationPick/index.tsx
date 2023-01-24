@@ -43,12 +43,7 @@ export default function fiberPlateLocationPick() {
   const navigator = useRouter();
 
   useEffect(() => {
-    // if (
-    //   localStorage.getItem('state') !==
-    //   getFiberRoutKey(AppRoutes.fiberPlateLocationPick)
-    // )
-    //   window.history.forward();
-    backRestrict(AppRoutes.fiberPlateLocationPick);
+    backRestrict();
     if (!localStorage.getItem('planId')) {
       window.location.href = `https://salam.sa/${locale || 'en'}/personal`;
     }
@@ -106,7 +101,6 @@ export default function fiberPlateLocationPick() {
 
     if (pendingOrder.data?.state?.trim()) {
       navigator.push(fiberOrderStatesRoute(pendingOrder.data?.state));
-      localStorage.setItem('state', pendingOrder.data?.state);
       return;
     } else {
       navigator.push(AppRoutes.fiberRegistration);

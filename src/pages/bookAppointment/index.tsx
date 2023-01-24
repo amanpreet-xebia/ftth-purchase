@@ -38,12 +38,11 @@ export default function bookAppointment() {
   const [checkApiCall, setCheckApiCall] = useState(false);
 
   useEffect(() => {
-    if (
-      localStorage.getItem('state') !==
-      getFiberRoutKey(AppRoutes.bookAppointment)
-    )
-      window.history.forward();
-    else if (orderId) {
+    window.history.pushState(null, '', window.location.href);
+    window.onpopstate = function () {
+      window.history.go(1);
+    };
+    if (orderId) {
       (async () => {
         const { status, msg, data } = await getTimeSlot(orderId);
         if (status && data?.availableSlots) {
@@ -77,7 +76,6 @@ export default function bookAppointment() {
 
       if (data?.state?.trim()) {
         navigation.push(fiberOrderStatesRoute(data?.state));
-        localStorage.setItem('state', data?.state);
         return;
       }
       // else {
@@ -142,7 +140,7 @@ export default function bookAppointment() {
                       </p>
                     </div>
                     <div className="w-full">
-                      <div className=" grid  grid-cols-2 gap-3 items-stretch">
+                      <div className=" grid grid-cols-2 gap-3 items-stretch">
                         {ele.appointmentTime &&
                           ele.appointmentTime.map((time: any, index: any) => (
                             <SelectableLabel

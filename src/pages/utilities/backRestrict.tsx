@@ -1,10 +1,8 @@
-import React from 'react';
-import { getFiberRoutKey } from '../../constants/routeNavigationAccountState';
-
-const backRestrict = (state: string) => {
-  if (localStorage.getItem('state') !== getFiberRoutKey(state))
-    window.history.forward();
-  return;
+const backRestrict = () => {
+  window.history.pushState(null, '', window.location.href);
+  window.onpopstate = function () {
+    window.history.go(1);
+  };
 };
 
 export default backRestrict;
