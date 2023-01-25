@@ -1,7 +1,7 @@
 /* eslint-disable no-unsafe-optional-chaining */
 import Link from 'next/link';
 import React, { useState, useContext } from 'react';
-import Logo from '../assets/logo.svg';
+import Logo from '../assets/images/logo.svg';
 import AppContext from '../AppContext';
 import Header from './Header';
 import DrawerSidePannel from './DrawerSidePannel';
