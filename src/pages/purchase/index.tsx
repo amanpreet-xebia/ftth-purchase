@@ -15,8 +15,8 @@ export default function PurchaseRedirect({params}: any) {
   }
 
   const router = useRouter()
-  const { planId, lang:selectedLanguage } = router.query
-
+  const { planId, lang='en' } = router.query
+  const selectedLanguage = lang;
   const value = useContext(AppContext);
   const { setOrderID } = useContext(AuthTokenContext);
 
