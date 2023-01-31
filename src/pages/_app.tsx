@@ -47,18 +47,7 @@ export default function App({ Component, pageProps }: AppProps) {
   //   router.push('/login')
   // }
   return (
-    <html>
-      <head>
-        {/* <script src="./config.js"></script> */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Poppins:ital@0;1&display=swap"
-          rel="stylesheet"
-        />
-        <link rel="shortcut icon" href={Images?.favicon_icon} />
-        <title>Salam fttx</title>
-      </head>
+    <>
       <AuthTokenProvider>
         <AuthToken>
           <AppContext.Provider
@@ -72,7 +61,7 @@ export default function App({ Component, pageProps }: AppProps) {
               setUser: setUser,
             }}
           >
-            <body
+            <div
               className="flex flex-col min-h-screen justify-between font-inter relative"
               dir={locale === 'en' ? 'ltr' : 'rtl'}
             >
@@ -89,10 +78,10 @@ export default function App({ Component, pageProps }: AppProps) {
               </div>
 
               <Footer />
-            </body>
+            </div>
           </AppContext.Provider>
         </AuthToken>
       </AuthTokenProvider>
-    </html>
+    </>
   );
 }

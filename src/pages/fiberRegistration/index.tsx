@@ -44,9 +44,6 @@ const fiberRegistration = () => {
     storedPlanId = localStorage.getItem('planId') || '';
   }
 
-  
-
- 
   const registerFiberPlan = async () => {
     // if (!checkEmptyVal({ firstName, lastName, mobileNumber, email, userId })) {
     //   setOpen(true);
@@ -132,9 +129,7 @@ const fiberRegistration = () => {
       <div className={'flex flex-col'}>
         <div className=" dyn-card-margin w-full md:w-5/6 lg:w-3/5 xl:w-1/2  self-center dyn-mt"></div>
         <div className=" w-full  grid  place-items-center dyn-card-margin text-white">
-          <div className="flex  flex-col dyn-mt items-stretch md:w-[70%]">
-            <NoticeCard text={registerationHeaderNotification}></NoticeCard>
-          </div>
+          <div className="flex  flex-col dyn-mt items-stretch md:w-[70%]"></div>
           <div className=" w-full md:w-5/6 lg:w-3/5 xl:w-1/2 bg-salam-blue dyn-mt dyn-card-pading rounded-2xl ">
             {errorMsgListRes && Object.keys(errorMsgListRes).length > 0 && (
               <div className="border-solid rounded-md border-rose-200 bg-rose-200 p-3 pl-4">
