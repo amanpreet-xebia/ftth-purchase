@@ -76,17 +76,17 @@ export default function fiberPlateLocationPick() {
   const periodItems: DropDownItem[] = [
     {
       key: '3',
-      value: fiberPlateLocation?.periodOpt?.threeMonth,
+      value: '3',
       label: fiberPlateLocation?.periodOpt?.threeMonth,
     },
     {
       key: '6',
-      value: fiberPlateLocation?.periodOpt?.sixMonth,
+      value: '6',
       label: fiberPlateLocation?.periodOpt?.sixMonth,
     },
     {
       key: '12',
-      value: fiberPlateLocation?.periodOpt?.twelveMonth,
+      value: '12',
       label: fiberPlateLocation?.periodOpt?.twelveMonth,
     },
   ];
@@ -97,6 +97,7 @@ export default function fiberPlateLocationPick() {
 
   const createNewOrder = async () => {
     const { status, msg, code, data } = await fiberNewOrder(
+      period,
       selectedProvider,
       `${storedPlanId}`,
       plateId,
