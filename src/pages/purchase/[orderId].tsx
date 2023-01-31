@@ -17,17 +17,15 @@ export default function ContinuePurchase(props: any) {
   const { setOrderID } = useContext(AuthTokenContext);
 
   const router = useRouter();
-  const { orderId, lang, token } = router.query;
+  const { orderId, lang='en', token } = router.query;
   const [selectedOrderId, setSelectedOrderId] = useState(orderId);
 
   useEffect(() => {
-    if(router?.isReady) {
       if (lang === "ar" || lang === "en") {
       value.setLocale(lang == "en" ? "en" : "ar");
       if (typeof window !== "undefined") {
         localStorage.setItem("selectedLanguage", lang);
       }
-    }
     }
     
   }, [lang]);

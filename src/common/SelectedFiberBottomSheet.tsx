@@ -12,31 +12,18 @@ import { AlertContext } from '../context/alertContext/AlertContext';
 
 const SelectedFiberPlanBottomSheet = () => {
   const router = useRouter();
-  const { orderID } = useContext(AuthTokenContext);
+  const { orderDetails } = useContext(AuthTokenContext);
   const { setOpen, setAlertMsg, setSeverity } = useContext(AlertContext);
   const [selectedPlan, setSelectedPlan] = useState<any>(null);
 
-  useEffect(() => {
-    if(!router?.route.split('/')[1].includes('purchase')) {
-      (async () => {
-      const orderId = typeof window !== 'undefined' ? localStorage.getItem('orderId') : '';
+  
 
-      if (orderId) {
-        const { status, data = {} } = await fiberPendingNewOrder(
-          `${orderId}`,
-          '200_state_mobile_verification'
-        );
-        if (status) {
-          setSelectedPlan(data?.selectedPlan);
-        } else {
-          setOpen(true);
-          setAlertMsg("Error while fetching your order");
-        }
-      }
-    })();
+
+  useEffect(()=>{
+    if(orderDetails && orderDetails?.length !== 0) {
+      setSelectedPlan(orderDetails);
     }
-    
-  }, [orderID]);
+  }, [orderDetails]);
 
   return (
     <div className="hidden md:block">

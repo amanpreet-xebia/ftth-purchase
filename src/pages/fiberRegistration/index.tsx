@@ -1,61 +1,46 @@
-'use client';
+"use client";
 /* eslint-disable @typescript-eslint/no-empty-interface */
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from "react";
 
-import InputField from '../../components/inputField';
-import Label, { LabelStyle } from '../../components/Label';
-import NoticeCard from '../../components/noticeCard';
-import StadiumButton from '../../components/stadiumButton';
-import AppRoutes from '../../constants/appRoutes';
-import checkEmptyVal from '../../dataMassaging/common/checkEmptyVal';
+import InputField from "../../components/inputField";
+import Label, { LabelStyle } from "../../components/Label";
+import StadiumButton from "../../components/stadiumButton";
+import AppRoutes from "../../constants/appRoutes";
 
-import createAccount from '../../dataMassaging/fiberReg/createAccount';
-import { fiberOrderStatesRoute } from '../../constants/routeNavigationAccountState';
-import { useRouter } from 'next/navigation';
-import AppContext from '../../AppContext';
-import { AlertContext } from '../../context/alertContext/AlertContext';
-import fiberNewOrder from '../../dataMassaging/fiberPlans/fiberNewOrder';
-import { AuthTokenContext } from '../../context/AuthToken';
+import createAccount from "../../dataMassaging/fiberReg/createAccount";
+import { fiberOrderStatesRoute } from "../../constants/routeNavigationAccountState";
+import { useRouter } from "next/navigation";
+import AppContext from "../../AppContext";
+import { AlertContext } from "../../context/alertContext/AlertContext";
+import { AuthTokenContext } from "../../context/AuthToken";
 
 const fiberRegistration = () => {
   const context = useContext(AppContext);
   const { locale } = context.state;
-  const redBorderStyle =
-    'bg-red-50 border border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 dark:bg-red-700 focus:border-red-500  dark:text-red-500 dark:placeholder-red-500 dark:border-red-500';
   const { setOpen, setAlertMsg, setSeverity } = useContext(AlertContext);
   const { setOrderID } = useContext(AuthTokenContext);
-  const [orderId, setOrderId] = useState('');
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [mobileNumber, setMobileNumber] = useState('');
-  const [email, setEmail] = useState('');
+  const [orderId, setOrderId] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [mobileNumber, setMobileNumber] = useState("");
+  const [email, setEmail] = useState("");
 
   const [errorMsgListRes, setErrorMsgListRes] =
     useState<Record<string, string>>();
-  const [userId, setUserId] = useState('');
-  // const { state } = useLocation();
+  const [userId, setUserId] = useState("");
 
   const token =
-    typeof window !== 'undefined' ? localStorage.getItem('token') : '';
+    typeof window !== "undefined" ? localStorage.getItem("token") : "";
 
   const navigate = useRouter();
-  let storedPlanId = '';
-  if (typeof window !== 'undefined') {
-    storedPlanId = localStorage.getItem('planId') || '';
+  let storedPlanId = "";
+  if (typeof window !== "undefined") {
+    storedPlanId = localStorage.getItem("planId") || "";
   }
 
-  
-
- 
   const registerFiberPlan = async () => {
-    // if (!checkEmptyVal({ firstName, lastName, mobileNumber, email, userId })) {
-    //   setOpen(true);
-    //   setAlertMsg('Fields with asterisk(*) sign are required, must be filled out');
-    //   setSeverity('error');
-    //   return false;
-    // }
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('token', token || '');
+    if (typeof window !== "undefined") {
+      localStorage.setItem("token", token || "");
     }
     const { status, msg, data, errors } = await createAccount({
       orderId,
@@ -73,12 +58,12 @@ const fiberRegistration = () => {
       const routeData = {
         state: { orderId: orderId, token: token },
       };
-      if (typeof window !== 'undefined') {
-        localStorage.setItem('orderId', data?.orderId?.toString() || '');
+      if (typeof window !== "undefined") {
+        localStorage.setItem("orderId", data?.orderId?.toString() || "");
       }
       if (data?.state?.trim()) {
-        localStorage.setItem('token', `${data?.token}` || '');
-        localStorage.setItem('orderId', `${data?.orderId}` || '');
+        localStorage.setItem("token", `${data?.token}` || "");
+        localStorage.setItem("orderId", `${data?.orderId}` || "");
         setOrderID(data?.orderId);
         navigate.push(fiberOrderStatesRoute(data?.state));
         return;
@@ -87,8 +72,8 @@ const fiberRegistration = () => {
       }
     } else {
       setOpen(true);
-      setAlertMsg(msg || 'Error while fetching your order');
-      setSeverity('error');
+      setAlertMsg(msg || "Error while fetching your order");
+      setSeverity("error");
       setErrorMsgListRes(errors);
     }
   };
@@ -113,15 +98,11 @@ const fiberRegistration = () => {
     setUserId(value);
   };
 
-  // if (!(orderId || token)) {
-  //   return <Navigate to={'/'} replace={true}></Navigate>;
-  // }
   const value = useContext(AppContext);
 
   const {
     page: {
       availableRegistration,
-      registerationHeaderNotification,
       enterDetails,
     },
     next,
@@ -129,30 +110,28 @@ const fiberRegistration = () => {
   } = value.state.languages;
   return (
     <div className="mt-0">
-      <div className={'flex flex-col'}>
+      <div className={"flex flex-col"}>
         <div className=" dyn-card-margin w-full md:w-5/6 lg:w-3/5 xl:w-1/2  self-center dyn-mt"></div>
         <div className=" w-full  grid  place-items-center dyn-card-margin text-white">
-          <div className="flex  flex-col dyn-mt items-stretch md:w-[70%]">
-            <NoticeCard text={registerationHeaderNotification}></NoticeCard>
-          </div>
+          <div className="flex  flex-col dyn-mt items-stretch md:w-[70%]"></div>
           <div className=" w-full md:w-5/6 lg:w-3/5 xl:w-1/2 bg-salam-blue dyn-mt dyn-card-pading rounded-2xl ">
             {errorMsgListRes && Object.keys(errorMsgListRes).length > 0 && (
               <div className="border-solid rounded-md border-rose-200 bg-rose-200 p-3 pl-4">
                 <ul className="list-disc text-red-900 pl-2">
-                  {errorMsgListRes?.['firstName']?.[0] && (
-                    <li>{errorMsgListRes['firstName'][0]}</li>
+                  {errorMsgListRes?.["firstName"]?.[0] && (
+                    <li>{errorMsgListRes["firstName"][0]}</li>
                   )}
-                  {errorMsgListRes?.['lastName']?.[0] && (
-                    <li>{errorMsgListRes['lastName'][0]}</li>
+                  {errorMsgListRes?.["lastName"]?.[0] && (
+                    <li>{errorMsgListRes["lastName"][0]}</li>
                   )}
-                  {errorMsgListRes?.['id']?.[0] && (
-                    <li>{errorMsgListRes['id'][0]}</li>
+                  {errorMsgListRes?.["id"]?.[0] && (
+                    <li>{errorMsgListRes["id"][0]}</li>
                   )}
-                  {errorMsgListRes?.['mobile']?.[0] && (
-                    <li>{errorMsgListRes['mobile'][0]}</li>
+                  {errorMsgListRes?.["mobile"]?.[0] && (
+                    <li>{errorMsgListRes["mobile"][0]}</li>
                   )}
-                  {errorMsgListRes?.['email']?.[0] && (
-                    <li>{errorMsgListRes['email'][0]}</li>
+                  {errorMsgListRes?.["email"]?.[0] && (
+                    <li>{errorMsgListRes["email"][0]}</li>
                   )}
                 </ul>
               </div>
@@ -171,9 +150,9 @@ const fiberRegistration = () => {
                   key={`${availableRegistration?.firstName}`}
                   placeholder={`${typeHere}`}
                   className={
-                    errorMsgListRes?.['firstName']?.[0]
-                      ? 'dyn-error-input-field'
-                      : 'dyn-success-input-field'
+                    errorMsgListRes?.["firstName"]?.[0]
+                      ? "dyn-error-input-field"
+                      : "dyn-success-input-field"
                   }
                 />
               </div>
@@ -184,9 +163,9 @@ const fiberRegistration = () => {
                   key={`${availableRegistration?.lastName}`}
                   placeholder={`${typeHere}`}
                   className={
-                    errorMsgListRes?.['lastName']?.[0]
-                      ? 'dyn-error-input-field'
-                      : 'dyn-success-input-field'
+                    errorMsgListRes?.["lastName"]?.[0]
+                      ? "dyn-error-input-field"
+                      : "dyn-success-input-field"
                   }
                 />
               </div>
@@ -197,9 +176,9 @@ const fiberRegistration = () => {
                   key={`${availableRegistration?.idNumber}`}
                   placeholder={`${typeHere}`}
                   className={
-                    errorMsgListRes?.['id']?.[0]
-                      ? 'dyn-error-input-field'
-                      : 'dyn-success-input-field'
+                    errorMsgListRes?.["id"]?.[0]
+                      ? "dyn-error-input-field"
+                      : "dyn-success-input-field"
                   }
                 />
               </div>
@@ -210,13 +189,13 @@ const fiberRegistration = () => {
                   key={`${availableRegistration?.mobileNumber}`}
                   placeholder={`${typeHere}`}
                   className={
-                    errorMsgListRes?.['mobile']?.[0]
-                      ? 'dyn-error-input-field'
-                      : 'dyn-success-input-field'
+                    errorMsgListRes?.["mobile"]?.[0]
+                      ? "dyn-error-input-field"
+                      : "dyn-success-input-field"
                   }
-                  dir={locale && 'ltr'}
+                  dir={locale && "ltr"}
                   style={{
-                    textAlign: locale === 'ar' ? 'right' : 'left',
+                    textAlign: locale === "ar" ? "right" : "left",
                   }}
                 />
               </div>
@@ -227,13 +206,13 @@ const fiberRegistration = () => {
                   key={`${availableRegistration?.email}`}
                   placeholder={`${typeHere}`}
                   className={
-                    errorMsgListRes?.['email']?.[0]
-                      ? 'dyn-error-input-field'
-                      : 'dyn-success-input-field'
+                    errorMsgListRes?.["email"]?.[0]
+                      ? "dyn-error-input-field"
+                      : "dyn-success-input-field"
                   }
-                  dir={locale && 'ltr'}
+                  dir={locale && "ltr"}
                   style={{
-                    textAlign: locale === 'ar' ? 'right' : 'left',
+                    textAlign: locale === "ar" ? "right" : "left",
                   }}
                 />
               </div>
@@ -248,7 +227,6 @@ const fiberRegistration = () => {
           </div>
         </div>
       </div>
-      {/* <Toaster /> */}
     </div>
   );
 };

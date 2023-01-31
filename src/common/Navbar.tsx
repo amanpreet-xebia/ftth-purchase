@@ -1,13 +1,16 @@
 /* eslint-disable no-unsafe-optional-chaining */
 import Link from 'next/link';
-import React, { useState, useContext } from 'react';
-import Logo from '../assets/logo.svg';
+import React, { useState, useEffect, useContext } from 'react';
+import Logo from '../assets/images/logo.svg';
 import AppContext from '../AppContext';
 import Header from './Header';
 import DrawerSidePannel from './DrawerSidePannel';
 import DropDown from '../common/DropDown';
 import { UserProfile } from '../components/UserProfile';
 import SelectedFiberDropdown from '../common/SelectedFiberDropdown';
+import { AuthTokenContext } from '../context/AuthToken';
+import fiberPendingNewOrder from '../dataMassaging/fiberPlans/fiberPendingNewOrder';
+import { AlertContext } from '../context/alertContext/AlertContext';
 
 function Navbar() {
   const value = useContext(AppContext);
@@ -17,6 +20,31 @@ function Navbar() {
   }: any = value?.state?.languages;
   const [navbar, setNavbar] = useState(false);
   const lang = '';
+
+  const { setOrderDetails } = useContext(AuthTokenContext);
+  const { setOpen, setAlertMsg, setSeverity } = useContext(AlertContext);
+  const orderID = localStorage.getItem('orderId');
+  useEffect(() => {
+    if (orderID) {
+      (async () => {
+        const orderId =
+          typeof window !== 'undefined' ? localStorage.getItem('orderId') : '';
+
+        if (orderId) {
+          const { status, data = {} } = await fiberPendingNewOrder(
+            `${orderId}`,
+            '200_state_mobile_verification'
+          );
+          if (status) {
+            setOrderDetails(data?.selectedPlan);
+          } else {
+            setOpen(true);
+            setAlertMsg('Error while fetching your order');
+          }
+        }
+      })();
+    }
+  }, [orderID]);
 
   const availableOpt1 = [
     {
