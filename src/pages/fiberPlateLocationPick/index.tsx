@@ -46,7 +46,9 @@ export default function fiberPlateLocationPick() {
   useEffect(() => {
     backRestrict();
     if (!localStorage.getItem('planId')) {
-      window.location.href = `https://salam.sa/${locale || 'en'}/personal`;
+      window.location.href = `${process.env.SALAM_URL}${
+        locale || 'en'
+      }/personal`;
     }
   }, [navigator]);
 

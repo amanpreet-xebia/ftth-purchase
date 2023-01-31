@@ -94,10 +94,10 @@ const updateAccount = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <div>
               <Label label={updateAcc?.email}></Label>
-              <InputField
-                handleInputChange={onEmailChange}
-                key="plateId"
-              ></InputField>
+
+              <div className="dyn-success-input-field">
+                {localStorage.getItem('emailId')}
+              </div>
               {/* <div>
                 <h1
                   className="border border-gray-300 

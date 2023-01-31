@@ -9,40 +9,41 @@ import AppRoutes from '../../constants/appRoutes';
 import { AlertContext } from '../../context/alertContext/AlertContext';
 import { AuthTokenContext } from '../../context/AuthToken';
 
-export default function PurchaseRedirect({params}: any) {
-  if (typeof window !== "undefined") {
+export default function PurchaseRedirect({ params }: any) {
+  if (typeof window !== 'undefined') {
     localStorage.clear();
   }
 
-  const router = useRouter()
-  const { planId, lang='en' } = router.query
+  const router = useRouter();
+  const { planId, lang = 'en' } = router.query;
   const selectedLanguage = lang;
   const value = useContext(AppContext);
   const { setOrderID } = useContext(AuthTokenContext);
 
   const { setOpen, setAlertMsg, setSeverity } = useContext(AlertContext);
 
-  
   const [pageError, setPageError] = useState(false);
 
   if (router?.isReady && !planId) {
-    window.location.href = `https://salam.sa/${selectedLanguage}/personal`;
+    window.location.href = `${process.env.SALAM_URL}${selectedLanguage}/personal`;
   } else {
-    if (typeof window !== "undefined") {
-      localStorage.setItem("planId", `${planId}`);
-      localStorage.setItem("selectedLanguage", `${selectedLanguage}`);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('planId', `${planId}`);
+      localStorage.setItem('selectedLanguage', `${selectedLanguage}`);
     }
   }
 
   useEffect(() => {
-    if (router?.isReady && (selectedLanguage === "ar" || selectedLanguage === "en")) {
-      value.setLocale(selectedLanguage == "en" ? "en" : "ar");
-      if (typeof window !== "undefined") {
-        localStorage.setItem("selectedLanguage", selectedLanguage);
+    if (
+      router?.isReady &&
+      (selectedLanguage === 'ar' || selectedLanguage === 'en')
+    ) {
+      value.setLocale(selectedLanguage == 'en' ? 'en' : 'ar');
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('selectedLanguage', selectedLanguage);
       }
     }
   }, [selectedLanguage]);
- 
 
   const fetchFiberPlans = async () => {
     const { status, msg, data } = await getFiberPlans();
@@ -59,7 +60,7 @@ export default function PurchaseRedirect({params}: any) {
         setOrderID(`${planId}`);
       } else {
         setPageError(true);
-        window.location.href = `https://salam.sa/${selectedLanguage}/personal`;
+        window.location.href = `${process.env.SALAM_URL}${selectedLanguage}/personal`;
       }
     } else {
       setOpen(true);
@@ -74,14 +75,14 @@ export default function PurchaseRedirect({params}: any) {
   }, [planId]);
 
   // if (pageError)
-    // return (
-    //   <EmptyScreen
-    //     title="uh_oh"
-    //     subtitle="something_wierd_happened_Keep_calm_and_try_again"
-    //   />
-    // );
+  // return (
+  //   <EmptyScreen
+  //     title="uh_oh"
+  //     subtitle="something_wierd_happened_Keep_calm_and_try_again"
+  //   />
+  // );
 
-    // keeping the above code for safekeeps
+  // keeping the above code for safekeeps
   return (
     <>
       {planId == null || planId.length === 0 ? (
