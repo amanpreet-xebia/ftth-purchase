@@ -69,6 +69,7 @@ const updateAccount = () => {
       const routeData = {
         state: { orderId: orderId, token: token },
       };
+      localStorage.setItem('refId', data?.ref?.toString() || '');
       navigator.push(fiberOrderStatesRoute(data!.state!));
     } else {
       // setOpen(true);

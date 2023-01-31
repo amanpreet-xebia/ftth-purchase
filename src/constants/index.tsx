@@ -6,37 +6,37 @@ export const translations = {
       personal: 'Personal',
       business: 'Business',
       about: 'About',
-      complaint: 'Complaint'
+      complaint: 'Complaint',
     },
-    drawerSideOption : {
-      fiber: "Fiber",
-      postpaid: "Postpaid",
-      prepaid: "Prepaid",
-      gamers_pack: "Gamers pack",
-      check_coverage: "Check coverage",
+    drawerSideOption: {
+      fiber: 'Fiber',
+      postpaid: 'Postpaid',
+      prepaid: 'Prepaid',
+      gamers_pack: 'Gamers pack',
+      check_coverage: 'Check coverage',
       orbit_family_pack: 'Orbit Family Pack',
-      _5_g: "5G",
-       salam_5g: "Salam 5G",
-      _5g_check_coverage: "5G Check coverage",
+      _5_g: '5G',
+      salam_5g: 'Salam 5G',
+      _5g_check_coverage: '5G Check coverage',
       other: 'Other',
       login_to_my_account: 'Login to My Account',
       about_salam: 'About Salam',
       complaints: 'Complaints',
-      contact_us: "Contact US",
+      contact_us: 'Contact US',
     },
     navOption: {
-        salamOptHeading: 'Salam Fiber',
+      salamOptHeading: 'Salam Fiber',
       _5gOptHeading: '5G',
       salamOpt: {
         fiber_postpaid: 'Fiber Postpaid',
         fiber_prepaid: 'Fiber Prepaid',
         gamers_pack: 'Gamers pack',
-        orbit_family_pack: 'Orbit Family Pack'
+        orbit_family_pack: 'Orbit Family Pack',
       },
       _5gOpt: {
         salam_5g_fwa: 'Salam 5G FWA',
-        g_coverage_check: '5G Coverage Check'
-      }
+        g_coverage_check: '5G Coverage Check',
+      },
     },
     footer: {
       copyright: 'All copyrights reserved to Salam 2023',
@@ -112,14 +112,15 @@ export const translations = {
     typeHere: 'Type here',
     confirm: 'confirm',
     page: {
-      registerationHeaderNotification:'Amazing, Salam FTTH is available at your location!',
+      registerationHeaderNotification:
+        'Amazing, Salam FTTH is available at your location!',
       enterDetails: 'Enter your details',
       availableRegistration: {
         firstName: 'First Name*',
         lastName: 'Last Name*',
         idNumber: 'Id Number*',
-        mobileNumber: "Mobile Number*",
-        email: 'Email*'
+        mobileNumber: 'Mobile Number*',
+        email: 'Email*',
       },
       fiberPlateLocation: {
         enterPlateDetails: '',
@@ -127,24 +128,31 @@ export const translations = {
           ITC: 'ITC',
           DAWIYAT: 'DAWIYAT',
           STC: 'STC',
-          MOBILY: 'MOBILY'
+          MOBILY: 'MOBILY',
+        },
+        periodOpt: {
+          threeMonth: '3 months',
+          sixMonth: '6 months',
+          twelveMonth: '12 months',
         },
         selectYourProviderHere: 'select your provider here',
+        selectYourPeriodHere: 'select your period here',
         yourPlate: 'Your Plate ID*',
         yourOperator: 'Your current operator*',
+        yourPeriod: 'Your current period*',
         findYourPlateNumber: 'Find your plate number',
         clickFindPlate: 'Click here to see how to find it',
-        cantFindYourLocationOnYourPhone: ''
+        cantFindYourLocationOnYourPhone: '',
       },
-       phoneVerification: {
+      phoneVerification: {
         verifyDetails: 'Verify your details',
         sendOtpPhone: 'We have send a 6-digit code to your phone ',
-        requestCode: 'You can request a new code in '
+        requestCode: 'You can request a new code in ',
       },
       EmailVerification: {
         verifyDetails: 'Verify your details',
         sendOtpEmail: 'We have send a 6-digit code to your email ',
-        requestCode: 'You can request a new code in '
+        requestCode: 'You can request a new code in ',
       },
       BookAppointment: {
         yourOrderNumber: 'Your Salam Fiber order number is',
@@ -154,20 +162,21 @@ export const translations = {
         confirm: 'confirm',
         emptyScreen: {
           noAvailableTimeSlots: 'No Available Time Slots',
-          noTimeSlotsAreAvailableAtThisLocation: 'No time slots are available at this moment',
-          backToSalam: 'Back to Salam'
-        }
+          noTimeSlotsAreAvailableAtThisLocation:
+            'No time slots are available at this moment',
+          backToSalam: 'Back to Salam',
+        },
       },
       purchaseFiberPlan: {
         differentCardTypes: 'Credit/Debit Card',
         sadad: 'SADAD',
         hi: 'hi',
-        yesAccept: "Yes, accept!",
+        yesAccept: 'Yes, accept!',
         paymentHeaderNotificaion: 'thanks for verifying your details!',
         purchaseDeposit: 'Your purchase requires a deposit',
         acceptSalam: 'I accept Salam’s ',
-          termsConditions: 'Terms & Conditions',
-          payingDeposit: 'You are paying now as deposit:',
+        termsConditions: 'Terms & Conditions',
+        payingDeposit: 'You are paying now as deposit:',
         creditDebit: {
           visa: 'Visa',
           american_express: 'American Express',
@@ -178,25 +187,24 @@ export const translations = {
           cardholderName: 'Cardholder Name',
           expiring_date: 'Expiring date',
           cvv: 'CVV',
-          
         },
         PayViaSadad: {
           sadad_text: 'You will receive Sadad billing number. ',
-        }
+        },
       },
-       updateAcc: {
+      updateAcc: {
         enterDetails: 'Enter your details',
         email: 'Email*',
-        password: 'Password'
+        password: 'Password',
       },
       OrderSuccessfully: {
         fiberOnWay: 'Your Salam Fiber order is on its way!',
         orderNumber: 'Order number',
-        checkEmailForOrder: 'Check your email and contact phone to review the details of your order and the contract. Use this space to provide any other info on the delivery and so on...',
+        checkEmailForOrder:
+          'Check your email and contact phone to review the details of your order and the contract. Use this space to provide any other info on the delivery and so on...',
         useOrderInfo: '',
-        backToSalam: 'Back to Salam'
-      }
-
+        backToSalam: 'Back to Salam',
+      },
     },
     plansCardContent: {
       salam: 'Salam Fiber',
@@ -238,22 +246,22 @@ export const translations = {
       personal: 'شخصي',
       business: 'الأعمال',
       about: 'حول',
-      complaint: 'الشكاوى'
+      complaint: 'الشكاوى',
     },
-    drawerSideOption : {
-      fiber: "فايبر",
-      postpaid: "مفوتر",
-      prepaid: "مسبق الدفع",
+    drawerSideOption: {
+      fiber: 'فايبر',
+      postpaid: 'مفوتر',
+      prepaid: 'مسبق الدفع',
       gamers_pack: 'باقة القيمر',
       orbit_family_pack: 'تحقق من التغطية',
-      _5_g: "5G",
-      salam_5g: "Salam 5G",
-      _5g_check_coverage: "5G Check coverage",
-      other: "أخرى",
-      login_to_my_account: "تسجيل الدخول إلى حسابي",
-      about_salam: "حول سلام",
-      complaints: "الشكاوي",
-      contact_us: "تواصل معنا",
+      _5_g: '5G',
+      salam_5g: 'Salam 5G',
+      _5g_check_coverage: '5G Check coverage',
+      other: 'أخرى',
+      login_to_my_account: 'تسجيل الدخول إلى حسابي',
+      about_salam: 'حول سلام',
+      complaints: 'الشكاوي',
+      contact_us: 'تواصل معنا',
     },
     navOption: {
       salamOptHeading: 'Salam Fiber',
@@ -262,12 +270,12 @@ export const translations = {
         fiber_postpaid: 'Fiber Postpaid',
         fiber_prepaid: 'Fiber Prepaid',
         gamers_pack: 'باقة القيمر',
-        orbit_family_pack: 'تحقق من التغطية'
+        orbit_family_pack: 'تحقق من التغطية',
       },
       _5gOpt: {
         salam_5g_fwa: 'Salam 5G FWA',
-        g_coverage_check: '5G Coverage Check'
-      }
+        g_coverage_check: '5G Coverage Check',
+      },
     },
     footer: {
       copyright: 'جميع الحقوق محفوظة لشركة سلام 2023',
@@ -342,14 +350,15 @@ export const translations = {
     typeHere: 'اكتب هنا',
     confirm: 'تأكيد',
     page: {
-      registerationHeaderNotification:'رائع، خدمة الألياف الضوئية من سلام متوفرة في موقعك',
+      registerationHeaderNotification:
+        'رائع، خدمة الألياف الضوئية من سلام متوفرة في موقعك',
       enterDetails: 'أدخِل معلوماتك',
       availableRegistration: {
         firstName: 'الإسم الأول',
         lastName: 'الإسم الأخير',
         idNumber: 'رقم الهوية',
-        mobileNumber: "رقم الجوال",
-        email: 'البريد الإلكتروني'
+        mobileNumber: 'رقم الجوال',
+        email: 'البريد الإلكتروني',
       },
       fiberPlateLocation: {
         enterPlateDetails: '',
@@ -357,24 +366,31 @@ export const translations = {
           ITC: 'سلام',
           DAWIYAT: 'ضوئيات',
           STC: 'STC',
-          MOBILY: 'اكتب هنا'
+          MOBILY: 'اكتب هنا',
+        },
+        periodOpt: {
+          threeMonth: '3 اشهر',
+          sixMonth: '6 اشهر',
+          twelveMonth: '12 اشهر',
         },
         selectYourProviderHere: 'اختر مزود الخدمة الحالي من هنا',
+        selectYourPeriodHere: 'حدد الفترة الخاصة بك هنا',
         yourPlate: 'رقم لوحتك*',
         yourOperator: 'مزوّد خدمتك الحالي',
+        yourPeriod: 'الفترة الحالية الخاصة بك',
         findYourPlateNumber: 'أوجد رقم لوحتك',
         clickFindPlate: 'اضغط هنا لمعرفة طريقة الحصول عليه',
-        cantFindYourLocationOnYourPhone: ''
+        cantFindYourLocationOnYourPhone: '',
       },
       phoneVerification: {
         verifyDetails: 'التحقق من المعلومات',
         sendOtpPhone: 'تم إرسال رمز تحقق من 6 خانات إلى هاتفك',
-        requestCode: 'يمكنك طلب رمز جديد خلال '
+        requestCode: 'يمكنك طلب رمز جديد خلال ',
       },
       EmailVerification: {
         verifyDetails: 'التحقق من المعلومات',
         sendOtpEmail: 'تم إرسال رمز تحقق من 6 خانات إلى بريدك الإلكتروني',
-        requestCode: 'يمكنك طلب رمز جديد خلال '
+        requestCode: 'يمكنك طلب رمز جديد خلال ',
       },
       BookAppointment: {
         yourOrderNumber: 'رقم طلبك هو',
@@ -383,20 +399,21 @@ export const translations = {
         chooseATimeslot: 'اختر وقت',
         emptyScreen: {
           noAvailableTimeSlots: 'No Available Time Slots',
-          noTimeSlotsAreAvailableAtThisLocation: 'No time slots are available at this moment',
-          backToSalam: 'Back to Salam'
-        }
+          noTimeSlotsAreAvailableAtThisLocation:
+            'No time slots are available at this moment',
+          backToSalam: 'Back to Salam',
+        },
       },
       purchaseFiberPlan: {
         differentCardTypes: 'بطاقة الائتمان',
         sadad: 'سداد',
         hi: 'مرحباً',
-        yesAccept: "نعم، أقبل!",
+        yesAccept: 'نعم، أقبل!',
         paymentHeaderNotificaion: 'شكراً لتأكيدك معلوماتك',
         purchaseDeposit: 'عملية الشراء تتطلب مبلغ تأمين',
         acceptSalam: 'أقبل ',
-          termsConditions: 'شروط وأحكام سلام',
-          payingDeposit: 'انت تدفع الآن كمبلغ تأمين:',
+        termsConditions: 'شروط وأحكام سلام',
+        payingDeposit: 'انت تدفع الآن كمبلغ تأمين:',
         creditDebit: {
           visa: 'فيزا',
           american_express: 'American Express',
@@ -407,25 +424,25 @@ export const translations = {
           cardholderName: 'اسم حامل البطاقة',
           expiring_date: 'تاريخ الانتهاء',
           cvv: 'رقم CVV',
-          
         },
         payViaSadad: {
           sadadText: 'سيصلك رقم دفع لخدمة سداد',
-        }
+        },
       },
       updateAcc: {
         enterDetails: 'أدخِل معلوماتك',
         email: 'البريد الإلكتروني',
-        password: 'كلمة المرور'
+        password: 'كلمة المرور',
       },
       OrderSuccessfully: {
         fiberOnWay: 'طلبك من سلام فايبر في الطريق!',
         orderNumber: 'رقم الطلب',
-        checkEmailForOrder: 'تحقق من بريدك الإلكتروني ورقم التواصل لمراجعة تفاصيل طلبك والعقد.',
-        useOrderInfo: 'استخدم هذه المساحة لتزويدنا بأي معلومات اخرى بخصوص التوصيل وخلافه.',
-        backToSalam: 'العودة إلى موقع سلام'
-      }
-     
+        checkEmailForOrder:
+          'تحقق من بريدك الإلكتروني ورقم التواصل لمراجعة تفاصيل طلبك والعقد.',
+        useOrderInfo:
+          'استخدم هذه المساحة لتزويدنا بأي معلومات اخرى بخصوص التوصيل وخلافه.',
+        backToSalam: 'العودة إلى موقع سلام',
+      },
     },
     plansCardContent: {
       salam: 'ألياف السلام',

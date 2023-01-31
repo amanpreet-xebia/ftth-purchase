@@ -31,7 +31,7 @@ const PhoneVerification = () => {
   const navigation = useRouter();
   const [otp, setOtp] = useState<string>();
   const [timer, setTimer] = useState(59);
-  const [registeredMobileNumber, setRegisteredMobileNumber] = useState('');
+  const registeredMobileNumber = localStorage?.getItem('mobileNumber');
   const timeOutCallback = useCallback(
     () => setTimer((currTimer) => currTimer - 1),
     []
@@ -55,27 +55,6 @@ const PhoneVerification = () => {
 
   useEffect(() => {
     backRestrict();
-    // if (
-    //   localStorage.getItem('state') !==
-    //   getFiberRoutKey(AppRoutes.phoneVerification)
-    // ) {
-    //   window.history.forward();
-    // }
-    (async () => {
-      const { status, msg, data } = await fiberPendingNewOrder(
-        `${orderId}`,
-        '200_state_mobile_verification'
-      );
-
-      if (status) {
-        setRegisteredMobileNumber(data?.mobile || '');
-      } else {
-        setOpen(true);
-        setAlertMsg(msg || 'Error while fetching your order');
-        setSeverity('error');
-        navigation.push(AppRoutes.selectFiberPlan);
-      }
-    })();
   }, [orderId]);
 
   // const { userData } = useAppSelector(userInfo);

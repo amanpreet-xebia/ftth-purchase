@@ -13,6 +13,7 @@ export interface FiberOrderResponse {
   message?: string;
   error?: string;
   orderId?: number;
+  ref?: number;
 }
 
 export interface FiberPendingNewOrderResponse {

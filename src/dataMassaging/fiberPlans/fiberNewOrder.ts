@@ -4,19 +4,18 @@ import fiberPlansService from '../../services/fiberPlansServices/fiberPlansServi
 import { FAILURE, RESPONSE_ERROR, SUCCESS } from '../../services/apisConstants';
 import { FiberOrderResponse } from './type';
 
-
 const fiberNewOrder = async (
+  period: string,
   provider: string,
   planId: string,
   odb: string,
   workflow: string,
   orderId: string
 ): Promise<responseType<FiberOrderResponse>> => {
-
   return trackPromise(
     fiberPlansService
-      .fiberNewOrder(provider, planId, odb, workflow, orderId)
-      .then((response : any) => {
+      .fiberNewOrder(period, provider, planId, odb, workflow, orderId)
+      .then((response: any) => {
         const { status, data } = response;
         if (status === SUCCESS) {
           return {
@@ -33,7 +32,7 @@ const fiberNewOrder = async (
           data,
         };
       })
-      .catch((e :any) => {
+      .catch((e: any) => {
         const { response } = e;
         return {
           status: false,

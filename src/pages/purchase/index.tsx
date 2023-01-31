@@ -20,15 +20,12 @@ export default function PurchaseRedirect({params}: any) {
   const value = useContext(AppContext);
   const { setOrderID } = useContext(AuthTokenContext);
 
-  const { locale, user } = value.state;
-  const { header } = value.state.languages;
-
   const { setOpen, setAlertMsg, setSeverity } = useContext(AlertContext);
 
   
   const [pageError, setPageError] = useState(false);
 
-   if (router?.isReady && !planId) {
+  if (router?.isReady && !planId) {
     window.location.href = `https://salam.sa/${selectedLanguage}/personal`;
   } else {
     if (typeof window !== "undefined") {
@@ -76,13 +73,15 @@ export default function PurchaseRedirect({params}: any) {
     if (planId && planId?.length !== 0) fetchFiberPlans();
   }, [planId]);
 
-  if (pageError)
-    return (
-      <EmptyScreen
-        title="uh_oh"
-        subtitle="something_wierd_happened_Keep_calm_and_try_again"
-      />
-    );
+  // if (pageError)
+    // return (
+    //   <EmptyScreen
+    //     title="uh_oh"
+    //     subtitle="something_wierd_happened_Keep_calm_and_try_again"
+    //   />
+    // );
+
+    // keeping the above code for safekeeps
   return (
     <>
       {planId == null || planId.length === 0 ? (

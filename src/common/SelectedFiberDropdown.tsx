@@ -9,6 +9,7 @@ import { FiberPlanDTO } from '../interface/types';
 import { AuthTokenContext } from '../context/AuthToken';
 import fiberPendingNewOrder from '../dataMassaging/fiberPlans/fiberPendingNewOrder';
 import { AlertContext } from '../context/alertContext/AlertContext';
+import { imageByAdonType } from '@/dataMassaging/common/fiberPlanFeatureMap';
 
 const SelectedFiberPlanDropdown = () => {
   //const selectedPlan = useAppSelector(selectedFiberPlan);
@@ -16,12 +17,9 @@ const SelectedFiberPlanDropdown = () => {
   const { setOpen, setAlertMsg, setSeverity } = useContext(AlertContext);
   const router = useRouter();
   const { orderDetails } = useContext(AuthTokenContext);
-  
-  
 
-  
-  useEffect(()=>{
-    if(orderDetails && orderDetails?.length !== 0) {
+  useEffect(() => {
+    if (orderDetails && orderDetails?.length !== 0) {
       setSelectedPlan(orderDetails);
     }
   }, [orderDetails]);
@@ -134,12 +132,12 @@ const PlanCustomiztionLayout = (props: any) => {
   return (
     <div className=" py-4 px-4 flex flex-row ">
       <div className="px-3 content-start ">
-        {/* <img
-          src={imageByAdonType(props.addonType)}
+        <img
+          src={imageByAdonType(props.addonType).default.src}
           alt=""
           width={props?.imgWidth ?? 70}
           height={props?.imgHeight ?? 70}
-        /> */}
+        />
       </div>
       <div className="w-full">
         <div className="font-medium  text-xs tracking-normal">

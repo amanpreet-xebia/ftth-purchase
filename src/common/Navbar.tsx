@@ -21,29 +21,30 @@ function Navbar() {
   const [navbar, setNavbar] = useState(false);
   const lang = '';
 
-  const { orderID, setOrderDetails } = useContext(AuthTokenContext);
+  const { setOrderDetails } = useContext(AuthTokenContext);
   const { setOpen, setAlertMsg, setSeverity } = useContext(AlertContext);
-
-useEffect(() => {
-    if(orderID) {
+  const orderID = localStorage.getItem('orderId');
+  useEffect(() => {
+    if (orderID) {
       (async () => {
-      const orderId = typeof window !== 'undefined' ? localStorage.getItem('orderId') : '';
+        const orderId =
+          typeof window !== 'undefined' ? localStorage.getItem('orderId') : '';
 
-      if (orderId) {
-        const { status, data = {} } = await fiberPendingNewOrder(
-          `${orderId}`,
-          '200_state_mobile_verification'
-        );
-        if (status) {
-          setOrderDetails(data?.selectedPlan);
-        } else {
-          setOpen(true);
-          setAlertMsg("Error while fetching your order");
+        if (orderId) {
+          const { status, data = {} } = await fiberPendingNewOrder(
+            `${orderId}`,
+            '200_state_mobile_verification'
+          );
+          if (status) {
+            setOrderDetails(data?.selectedPlan);
+            localStorage.setItem('mobileNumber', data?.mobile || '');
+          } else {
+            setOpen(true);
+            setAlertMsg('Error while fetching your order');
+          }
         }
-      }
-    })();
+      })();
     }
-    
   }, [orderID]);
 
   const availableOpt1 = [

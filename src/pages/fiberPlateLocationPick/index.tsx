@@ -24,11 +24,12 @@ import backRestrict from '../utilities/backRestrict';
 
 export default function fiberPlateLocationPick() {
   const value = useContext(AppContext);
-  const { setOrderID } = useContext(AuthTokenContext);
   const { setOpen, setAlertMsg, setSeverity } = useContext(AlertContext);
   const { locale } = value.state;
   const storedPlanId =
     typeof window !== 'undefined' ? localStorage.getItem('planId') : '';
+  const { orderDetails } = useContext(AuthTokenContext);
+
   const storedOrderId =
     typeof window !== 'undefined' ? localStorage.getItem('orderId') : '';
   const {
@@ -39,7 +40,7 @@ export default function fiberPlateLocationPick() {
   // const { setAuthToken, setOrderID } = useContext(AuthTokenContext);
   const [selectedProvider, setSelectedProvider] = useState<any>(null);
   const [plateId, setPlateId] = useState<any>(null);
-
+  const [period, setPeriod] = useState<any>(null);
   const navigator = useRouter();
 
   useEffect(() => {
@@ -72,12 +73,31 @@ export default function fiberPlateLocationPick() {
     },
   ];
 
+  const periodItems: DropDownItem[] = [
+    {
+      key: '3',
+      value: '3',
+      label: fiberPlateLocation?.periodOpt?.threeMonth,
+    },
+    {
+      key: '6',
+      value: '6',
+      label: fiberPlateLocation?.periodOpt?.sixMonth,
+    },
+    {
+      key: '12',
+      value: '12',
+      label: fiberPlateLocation?.periodOpt?.twelveMonth,
+    },
+  ];
+
   const onPlateIdChanged = (value: string) => {
     setPlateId(value);
   };
 
   const createNewOrder = async () => {
     const { status, msg, code, data } = await fiberNewOrder(
+      period,
       selectedProvider,
       `${storedPlanId}`,
       plateId,
@@ -148,7 +168,9 @@ export default function fiberPlateLocationPick() {
   const onProviderChange = (item: any) => {
     setSelectedProvider(item);
   };
-
+  const onPeriodChange = (item: any) => {
+    setPeriod(item);
+  };
   return (
     <div className=" w-full overflow-y-scroll grid  place-items-center dyn-card-margin text-white">
       <div className=" w-full md:w-5/6 lg:w-3/5 xl:w-1/2 bg-salam-blue dyn-mt dyn-card-pading rounded-2xl ">
@@ -180,6 +202,21 @@ export default function fiberPlateLocationPick() {
                 placeholder={typeHere}
               />
             </div>
+            {orderDetails.planType === 'prepaid' && (
+              <div>
+                <Label label={fiberPlateLocation?.yourPeriod}></Label>
+                <SelectComponent
+                  handleEventChange={onPeriodChange}
+                  availableOption={periodItems}
+                  placeholder={fiberPlateLocation?.selectYourPeriodHere}
+                  // className="selectDropDown"
+                  className={`selectDropDown ${
+                    locale === 'ar' ? 'text-left' : ''
+                  }`}
+                  dir={locale ? 'rtl' : ''}
+                />
+              </div>
+            )}
           </div>
           <div className=" flex my-8 md:my-10 w-[138px] float-right">
             <StadiumButton

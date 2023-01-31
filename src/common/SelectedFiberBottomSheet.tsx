@@ -6,21 +6,16 @@ import React, { useEffect, useContext, useState } from 'react';
 import { useRouter } from 'next/router';
 import AppRoutes from '../constants/appRoutes';
 import { FiberPlanDTO } from '../interface/types';
-import fiberPendingNewOrder from '../dataMassaging/fiberPlans/fiberPendingNewOrder';
 import { AuthTokenContext } from '../context/AuthToken';
-import { AlertContext } from '../context/alertContext/AlertContext';
+import { imageByAdonType } from '@/dataMassaging/common/fiberPlanFeatureMap';
 
 const SelectedFiberPlanBottomSheet = () => {
-  const router = useRouter();
   const { orderDetails } = useContext(AuthTokenContext);
-  const { setOpen, setAlertMsg, setSeverity } = useContext(AlertContext);
+
   const [selectedPlan, setSelectedPlan] = useState<any>(null);
 
-  
-
-
-  useEffect(()=>{
-    if(orderDetails && orderDetails?.length !== 0) {
+  useEffect(() => {
+    if (orderDetails && orderDetails?.length !== 0) {
       setSelectedPlan(orderDetails);
     }
   }, [orderDetails]);
@@ -129,16 +124,15 @@ const PlanCustomiztionLayout = (props: any) => {
       navigator.push(AppRoutes.addonSelection);
     }
   };
-
   return (
     <div className=" py-6 px-12 lg:px-18 flex flex-row ">
       <div className="px-3 content-start ">
-        {/* <img
-          src={imageByAdonType(props.addonType)}
+        <img
+          src={imageByAdonType(props.addonType).default.src}
           alt=""
           width={props?.imgWidth ?? 70}
           height={props?.imgHeight ?? 70}
-        /> */}
+        />
       </div>
       <div className="w-full flex flex-row justify-between">
         <div>
