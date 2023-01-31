@@ -13,8 +13,8 @@ const orderSuccessfully = () => {
   const {
     page: { OrderSuccessfully },
   } = value.state.languages;
-  const orderId =
-    typeof window !== 'undefined' ? localStorage.getItem('orderId') : '';
+  const refId = localStorage.getItem('refId');
+  // typeof window !== 'undefined' ? localStorage.getItem('orderId') : '';
   useEffect(() => {
     backRestrict();
     // if (
@@ -32,7 +32,7 @@ const orderSuccessfully = () => {
         {OrderSuccessfully?.fiberOnWay}
       </p>
       <p className="text-center mt-2 md:mt-6 font-bold  text-accent md:text-4xl text-xl">
-        {`${OrderSuccessfully?.orderNumber}: ${orderId}`}
+        {`${OrderSuccessfully?.orderNumber}: ${refId}`}
       </p>
       <p className="text-center font-light text-base md:text-xl mt-6 md:mt-14 text-slate-600 px-5">
         {OrderSuccessfully?.checkEmailForOrder}

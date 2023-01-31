@@ -37,6 +37,7 @@ function Navbar() {
           );
           if (status) {
             setOrderDetails(data?.selectedPlan);
+            localStorage.setItem('mobileNumber', data?.mobile || '');
           } else {
             setOpen(true);
             setAlertMsg('Error while fetching your order');
