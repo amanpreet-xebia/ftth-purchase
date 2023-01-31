@@ -49,29 +49,29 @@ function Navbar() {
   const availableOpt1 = [
     {
       label: salamOpt?.fiber_postpaid,
-      value: `https://salam.sa/${lang}/personal/fiber-postpaid`,
+      value: `${process.env.SALAM_URL}${lang}/personal/fiber-postpaid`,
     },
     {
       label: salamOpt?.fiber_prepaid,
-      value: `https://salam.sa/${lang}/personal/fiber-prepaid`,
+      value: `${process.env.SALAM_URL}${lang}/personal/fiber-prepaid`,
     },
     {
       label: salamOpt?.gamers_pack,
-      value: `https://salam.sa/${lang}/personal/gaming`,
+      value: `${process.env.SALAM_URL}${lang}/personal/gaming`,
     },
     {
       label: salamOpt?.orbit_family_pack,
-      value: `https://salam.sa/${lang}/personal/orbit-family-pack`,
+      value: `${process.env.SALAM_URL}${lang}/personal/orbit-family-pack`,
     },
   ];
   const availableOpt2 = [
     {
       label: _5gOpt?.salam_5g_fwa,
-      value: `https://salam.sa/${lang}/personal/orbit-family-pack`,
+      value: `${process.env.SALAM_URL}${lang}/personal/orbit-family-pack`,
     },
     {
       label: _5gOpt?.g_coverage_check,
-      value: `https://salam.sa/${lang}/personal/5g-coverage-check`,
+      value: `${process.env.SALAM_URL}${lang}/personal/5g-coverage-check`,
     },
   ];
   return (

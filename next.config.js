@@ -10,6 +10,7 @@ module.exports = {
     API_BASE_LOCAL_URL: 'http://165.227.158.208/api',
     API_BASE_DEV_URL: 'http://165.227.158.208/api',
     API_BASE_PROD_URL: 'http://165.227.158.208/api',
+    SALAM_URL: 'https://salam.sa/',
   },
   webpack(config) {
     config.module.rules.push({

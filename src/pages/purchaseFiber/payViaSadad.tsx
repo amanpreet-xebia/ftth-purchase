@@ -93,7 +93,7 @@ export default function PayViaSadad({ planPrice }: any) {
 
   const selectedLanguage = locale || 'en';
 
-  const redirectUrl = `https://salam.sa/${selectedLanguage}/support/terms-conditions`;
+  const redirectUrl = `${process.env.SALAM_URL}${selectedLanguage}/support/terms-conditions`;
 
   return (
     <>
