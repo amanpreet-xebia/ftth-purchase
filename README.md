@@ -40,8 +40,11 @@ To deploy it to production
 ▶️ we need the [export] (https://nextjs.org/docs/advanced-features/static-html-export) of the static files which is export of the Next.js application to static HTML, which can be run standalone without the need of a Node.js server.
 
 ▶️ We have to create a prod build by executing ⭐ `yarn export` which executes two seperate commands 
+
     👉 `next build`
+
     👉 `next export`
+    
 ▶️ executing the above command will create a `_next` folder in out root directory and an `out` folder that will contain all the static HTML files that can be deployed to the production.
 
 **`Please Note: `** NextJS 13 doesnt support next export with app Dir since App Dir is still experimental feature please refer [blog](https://beta.nextjs.org/docs/app-directory-roadmap)
