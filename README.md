@@ -10,15 +10,25 @@ and to run it over your localhost:`port` you can run
 ```bash
 yarn run dev
 ```
- `
+ 
 Directory Structure
 ----------------------
- This project uses [src Directory](https://nextjs.org/docs/advanced-features/src-directory) structure, all the frontend pages and routes are supposed to be added to the `src` folder.
+This project uses [src Directory](https://nextjs.org/docs/advanced-features/src-directory) structure, all the frontend pages and routes are supposed to be added to the `src` folder.
+
+The entry point of our application will be `src/pages/index.tsx` or the main page.
+
+The head can be editied inside the `src/pages/_document.tsx` file for SEO.
+
+AuthtokenProvider and AppContextProvider wrapping the whole application can be found inside `src/pages/_app.tsx`.
 
 Styling
 ----------------------
+All the styles are added in the `src/styles/global.css` file and will be following TailwindCSS as well.
 
-All the styles are added in the `src/styles/global.css` file and will be following TailwindCSS as well
+Translations
+----------------------
+
+To add content to the translation object which can be found inside the `src/constants/index.tsx` file, add the arabic content to the respective key in the `ar` object.
 
 
 
