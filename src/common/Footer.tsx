@@ -2,18 +2,20 @@ import Link from 'next/link';
 import React, { useContext } from 'react';
 import { BsFacebook } from 'react-icons/bs';
 import { BsLinkedin } from 'react-icons/bs';
- import { BsInstagram } from 'react-icons/bs';
- import { BsYoutube } from 'react-icons/bs';
- import { BsSnapchat } from 'react-icons/bs';
- import { BsTwitter } from 'react-icons/bs';
+import { BsInstagram } from 'react-icons/bs';
+import { BsYoutube } from 'react-icons/bs';
+import { BsSnapchat } from 'react-icons/bs';
+import { BsTwitter } from 'react-icons/bs';
 import SelectedFiberBottomSheet from '../common/SelectedFiberBottomSheet';
 import AppContext from '../AppContext';
 
 function Footer() {
   const data = useContext(AppContext);
-  const { footerLinks: {terms, security, privacy, salamVersion}, footer } = data.state.languages;
-  
-  
+  const {
+    footerLinks: { terms, security, privacy, salamVersion },
+    footer,
+  } = data.state.languages;
+
   const lang = '';
   return (
     <footer>
@@ -24,17 +26,29 @@ function Footer() {
 
           <div className="  flex justify-around gap-6 md:gap-8 text-center">
             <div>
-              <a href={`https://salam.sa/${lang}/support/terms-conditions`} target="_blank" rel="noreferrer">
+              <a
+                href={`${process.env.SALAM_URL}${lang}/support/terms-conditions`}
+                target="_blank"
+                rel="noreferrer"
+              >
                 {terms}
               </a>
             </div>
             <div>
-              <a href={`https://salam.sa/${lang}/support/security-policy`} target="_blank" rel="noreferrer">
+              <a
+                href={`${process.env.SALAM_URL}${lang}/support/security-policy`}
+                target="_blank"
+                rel="noreferrer"
+              >
                 {security}
               </a>
             </div>
             <div>
-              <a href={`https://salam.sa/${lang}/support/privacy-policy`} target="_blank" rel="noreferrer">
+              <a
+                href={`${process.env.SALAM_URL}${lang}/support/privacy-policy`}
+                target="_blank"
+                rel="noreferrer"
+              >
                 {privacy}
               </a>
             </div>

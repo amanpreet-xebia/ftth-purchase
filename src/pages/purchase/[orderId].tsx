@@ -17,17 +17,16 @@ export default function ContinuePurchase(props: any) {
   const { setOrderID } = useContext(AuthTokenContext);
 
   const router = useRouter();
-  const { orderId, lang='en', token } = router.query;
+  const { orderId, lang = 'en', token } = router.query;
   const [selectedOrderId, setSelectedOrderId] = useState(orderId);
 
   useEffect(() => {
-      if (lang === "ar" || lang === "en") {
-      value.setLocale(lang == "en" ? "en" : "ar");
-      if (typeof window !== "undefined") {
-        localStorage.setItem("selectedLanguage", lang);
+    if (lang === 'ar' || lang === 'en') {
+      value.setLocale(lang == 'en' ? 'en' : 'ar');
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('selectedLanguage', lang);
       }
     }
-    
   }, [lang]);
 
   useEffect(() => {
@@ -51,11 +50,11 @@ export default function ContinuePurchase(props: any) {
           setSeverity('error');
           // navigation.push(AppRoutes.selectFiberPlan);
           const selectedLanguage = lang || 'en';
-          window.location.href = `https://salam.sa/${selectedLanguage}/personal`;
+          window.location.href = `${process.env.SALAM_URL}${selectedLanguage}/personal`;
         }
       }
     })();
   }, [orderId]);
 
-  return (!orderId && <CircularLoading />);
+  return !orderId && <CircularLoading />;
 }

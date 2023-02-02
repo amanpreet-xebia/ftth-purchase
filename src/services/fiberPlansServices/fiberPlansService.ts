@@ -5,6 +5,7 @@ import {
   FiberServicableResponse,
 } from '../../dataMassaging/fiberPlans/type';
 import axios from '../axios';
+import { stringify } from 'querystring';
 const getFiberPlans = () => {
   return axios.get<FiberPlanDTO[]>('/plans');
 };
@@ -20,6 +21,7 @@ const fiberPlanServicable = (
 };
 
 const fiberNewOrder = (
+  period: string,
   provider: string,
   planId: string,
   odb: string,
@@ -27,6 +29,7 @@ const fiberNewOrder = (
   orderId: string
 ) => {
   return axios.post<FiberOrderResponse>(`/newOrder/${orderId}/selectOdb`, {
+    period: period,
     odb: odb,
     provider: provider,
     planId: planId,
