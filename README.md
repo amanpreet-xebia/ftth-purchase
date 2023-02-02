@@ -11,7 +11,7 @@ and to run it over your localhost:`port` you can run
 yarn run dev
 ```
 
-This porject uses ==Client Side Components== you can read more about it on [server-and-client-components](https://beta.nextjs.org/docs/rendering/server-and-client-components), this enables us to use client side data fetching and all the react features and hooks out of the box.
+This porject uses **`Client Side Components`** you can read more about it on [server-and-client-components](https://beta.nextjs.org/docs/rendering/server-and-client-components), this enables us to use client side data fetching and all the react features and hooks out of the box.
 
 Directory Structure
 ----------------------
@@ -37,15 +37,17 @@ Deployment
 ----------------------
 
 To deploy it to production
+
 ▶️ we need the [export] (https://nextjs.org/docs/advanced-features/static-html-export) of the static files which is export of the Next.js application to static HTML, which can be run standalone without the need of a Node.js server.
 
-▶️ We have to create a prod build by executing ⭐ `yarn export` which executes two seperate commands 
+▶️ We have to create a prod build by executing ⭐ **`yarn export`** which executes two seperate commands 
 
     👉 `next build`
 
     👉 `next export`
-    
+
 ▶️ executing the above command will create a `_next` folder in out root directory and an `out` folder that will contain all the static HTML files that can be deployed to the production.
+
 
 **`Please Note: `** NextJS 13 doesnt support next export with app Dir since App Dir is still experimental feature please refer [blog](https://beta.nextjs.org/docs/app-directory-roadmap)
 
