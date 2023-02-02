@@ -13,13 +13,13 @@ yarn run dev
  
 Directory Structure
 ----------------------
-This project uses [src Directory](https://nextjs.org/docs/advanced-features/src-directory) structure, all the frontend pages and routes are supposed to be added to the `src` folder.
+:star: This project uses [src Directory](https://nextjs.org/docs/advanced-features/src-directory) structure, all the frontend pages and routes are supposed to be added to the `src` folder.
 
-The entry point of our application will be `src/pages/index.tsx` or the main page.
+:star: The entry point of our application will be `src/pages/index.tsx` or the main page.
 
-The head can be editied inside the `src/pages/_document.tsx` file for SEO.
+:star: The head can be editied inside the `src/pages/_document.tsx` file for SEO.
 
-AuthtokenProvider and AppContextProvider wrapping the whole application can be found inside `src/pages/_app.tsx`.
+:star: AuthtokenProvider and AppContextProvider wrapping the whole application can be found inside `src/pages/_app.tsx`.
 
 Styling
 ----------------------
