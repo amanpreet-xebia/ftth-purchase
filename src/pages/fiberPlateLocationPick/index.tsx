@@ -17,7 +17,6 @@ import InputField from '../../components/inputField';
 import AppContext from '../../AppContext';
 import Label, { LabelStyle } from '../../components/Label';
 import SelectComponent from '../../dataMassaging/common/SelectComponent';
-// import './creditDebitStyle.css';
 import { AuthTokenContext } from '../../context/AuthToken';
 import { AlertContext } from '../../context/alertContext/AlertContext';
 import backRestrict from '../utilities/backRestrict';
@@ -98,7 +97,7 @@ export default function fiberPlateLocationPick() {
   };
 
   const createNewOrder = async () => {
-    const { status, msg, code, data } = await fiberNewOrder(
+    const plateCheck = await fiberNewOrder(
       period,
       selectedProvider,
       `${storedPlanId}`,
@@ -106,33 +105,24 @@ export default function fiberPlateLocationPick() {
       '1',
       `${storedOrderId}`
     );
-    // if (data?.orderId && status && code === 200) {
-    const pendingOrder = await fiberPendingNewOrder(
-      `${storedOrderId}`,
-      '200_state_account_creation'
-    );
+    if (plateCheck?.code === 200) {
+      const pendingOrder = await fiberPendingNewOrder(
+        `${storedOrderId}`,
+        '200_state_account_creation'
+      );
 
-    // const routeData = {
-    //   state: { orderId: data?.orderId, token: data?.token }
-    // };
-
-    // setOrderID(`${data?.orderId}`);
-
-    // localStorage.setItem('token', data?.token || '');
-    // localStorage.setItem('orderId', `${data?.orderId}` || '');
-
-    if (pendingOrder.data?.state?.trim()) {
-      navigator.push(fiberOrderStatesRoute(pendingOrder.data?.state));
-      localStorage.setItem('state', pendingOrder.data?.state);
-      return;
+      if (pendingOrder.data?.state?.trim()) {
+        navigator.push(fiberOrderStatesRoute(pendingOrder.data?.state));
+        localStorage.setItem('state', pendingOrder.data?.state);
+        return;
+      } else {
+        navigator.push(AppRoutes.fiberRegistration);
+      }
     } else {
-      navigator.push(AppRoutes.fiberRegistration);
+      setOpen(true);
+      setAlertMsg(plateCheck.msg);
+      setSeverity('error');
     }
-    // } else {
-    //   setOpen(true);
-    //   setAlertMsg(msg);
-    //   setSeverity('error');
-    // }
   };
 
   const verifyPlateLocationService = async () => {
@@ -150,22 +140,6 @@ export default function fiberPlateLocationPick() {
     }
 
     createNewOrder();
-
-    // const { status, code, data } = await fiberPlanServicable(
-    //   selectedProvider,
-    //   `${selectedPlan!.id}`,
-    //   plateId
-    // );
-    // if (status && code === SUCCESS) {
-    //   createNewOrder(data!);
-    //   return;
-    // } else if (code === NOT_FOUND) {
-    //   navigator.push(AppRoutes.fiberUnavailable);
-    // } else {
-    //   setOpen(true);
-    //   setAlertMsg(data?.message || 'Error while getting your fiber plan availabliltiy');
-    //   setSeverity('error');
-    // }
   };
   const onProviderChange = (item: any) => {
     setSelectedProvider(item);
@@ -189,7 +163,6 @@ export default function fiberPlateLocationPick() {
                 handleEventChange={onProviderChange}
                 availableOption={providerItems}
                 placeholder={fiberPlateLocation?.selectYourProviderHere}
-                // className="selectDropDown"
                 className={`selectDropDown ${
                   locale === 'ar' ? 'text-left' : ''
                 }`}
