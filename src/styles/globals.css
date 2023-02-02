@@ -198,6 +198,11 @@ input:checked + div {
 input:checked + div svg {
   @apply block;
 }
+input:disabled{
+  color: #797979;
+  background: #dddddd;
+  cursor: not-allowed;
+}
 .body_custom_height {
   height: calc(100vh - 197px);
 }

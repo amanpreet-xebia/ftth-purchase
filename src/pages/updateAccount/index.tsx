@@ -94,22 +94,18 @@ const updateAccount = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <div>
               <Label label={updateAcc?.email}></Label>
-
-              <div className="dyn-success-input-field">
-                {localStorage.getItem('emailId')}
-              </div>
-              {/* <div>
-                <h1
-                  className="border border-gray-300 
-            text-black text-sm rounded-lg bg-[#DCDCDC] block w-full p-3
-            py-[14px] md:py-[14px] disabled pointer">
-                  {email || ''}
-                </h1>
-              </div> */}
+              <InputField
+                xstype = 'email'
+                handleInputChange={onPasswordChanged}
+                key="plateId"
+                value = {localStorage.getItem('emailId')}
+                disabled
+              ></InputField>
             </div>
             <div>
               <Label label={updateAcc?.password}></Label>
               <InputField
+                type = 'password'
                 handleInputChange={onPasswordChanged}
                 key="plateId"
               ></InputField>
