@@ -55,7 +55,6 @@ const fiberRegistration = () => {
       },
     });
     if (status) {
-      localStorage.setItem;
       const routeData = {
         state: { orderId: orderId, token: token },
       };
@@ -63,10 +62,13 @@ const fiberRegistration = () => {
         localStorage.setItem('orderId', data?.orderId?.toString() || '');
       }
       if (data?.state?.trim()) {
-        localStorage.setItem('token', `${data?.token}` || '');
-        localStorage.setItem('orderId', `${data?.orderId}` || '');
-        localStorage.setItem('emailId', email);
-        localStorage.setItem('mobileNumber', mobileNumber);
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('token', `${data?.token}` || '');
+          localStorage.setItem('orderId', `${data?.orderId}` || '');
+          localStorage.setItem('emailId', email);
+          localStorage.setItem('mobileNumber', mobileNumber);
+        }
+
         setOrderID(data?.orderId);
         navigate.push(fiberOrderStatesRoute(data?.state));
         return;

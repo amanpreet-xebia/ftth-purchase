@@ -66,10 +66,12 @@ export default function PayViaSadad({ planPrice }: any) {
           return;
         } else {
           navigate.push(AppRoutes.bookAppointment);
-          localStorage.setItem(
-            'state',
-            getFiberRoutKey(AppRoutes.bookAppointment)
-          );
+          if (typeof window !== 'undefined') {
+            localStorage.setItem(
+              'state',
+              getFiberRoutKey(AppRoutes.bookAppointment)
+            );
+          }
         }
       } else {
         setOpen(true);
