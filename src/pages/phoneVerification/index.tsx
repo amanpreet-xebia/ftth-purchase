@@ -5,16 +5,10 @@ import { useRouter } from 'next/navigation';
 import StadiumButton from '../../components/stadiumButton';
 import OtpInput from '../../components/otpInput';
 import Label, { LabelStyle } from '../../components/Label';
-import AppRoutes from '../../constants/appRoutes';
 import verifyMobileNumber from '../../dataMassaging/fiberReg/verifyMobileNumber';
-import {
-  fiberOrderStatesRoute,
-  getFiberRoutKey,
-} from '../../constants/routeNavigationAccountState';
-import fiberPendingNewOrder from '../../dataMassaging/fiberPlans/fiberPendingNewOrder';
+import { fiberOrderStatesRoute } from '../../constants/routeNavigationAccountState';
 import resendMobileOtp from '../../dataMassaging/fiberReg/resendMobileOtp';
 import OtpTimer from 'otp-timer';
-import NoticeCard from '../../components/noticeCard';
 import AppContext from '../../AppContext';
 import { AlertContext } from '../../context/alertContext/AlertContext';
 import backRestrict from '../utilities/backRestrict';
@@ -25,7 +19,6 @@ const PhoneVerification = () => {
   const {
     page: { phoneVerification },
     next,
-    typeHere,
   } = value.state.languages;
 
   const navigation = useRouter();
@@ -42,50 +35,14 @@ const PhoneVerification = () => {
   const orderId =
     typeof window !== 'undefined' ? localStorage.getItem('orderId') : '';
 
-  const submit = () => {
-    console.log('button clicked');
-  };
-
-  // const { userDetails, getUserDetails } = useContext(UserStateContext);
-  // useEffect(() => {
-  //   (async () => {
-  //     console.log('pppppp', await getUserDetails());
-  //   })();
-  // }, []);
-
   useEffect(() => {
     backRestrict();
-    // if (
-    //   localStorage.getItem('state') !==
-    //   getFiberRoutKey(AppRoutes.phoneVerification)
-    // ) {
-    //   window.history.forward();
-    // }
-    (async () => {
-      const { status, msg, data } = await fiberPendingNewOrder(
-        `${orderId}`,
-        '200_state_mobile_verification'
-      );
+    setRegisteredMobileNumber(localStorage.getItem('mobileNumber') || '');
+  }, []);
 
-      if (status) {
-        setRegisteredMobileNumber(data?.mobile || '');
-      } else {
-        setOpen(true);
-        setAlertMsg(msg || 'Error while fetching your order');
-        setSeverity('error');
-        navigation.push(AppRoutes.selectFiberPlan);
-      }
-    })();
-  }, [orderId]);
-
-  // const { userData } = useAppSelector(userInfo);
   useEffect(() => {
     timer > 0 && setTimeout(timeOutCallback, 1000);
   }, [timer, timeOutCallback]);
-
-  const resetTimer = function () {
-    setTimer(59);
-  };
 
   const onHandleClick = async () => {
     if (otp?.length === 6) {
@@ -94,9 +51,6 @@ const PhoneVerification = () => {
         otp.toString()
       );
       if (status) {
-        const routeData = {
-          state: { orderId: orderId, token: token },
-        };
         navigation.push(fiberOrderStatesRoute(data!.state!));
       } else {
         setOpen(true);
@@ -113,21 +67,15 @@ const PhoneVerification = () => {
   const handleChange = (code: string) => setOtp(code);
 
   const resendHandler = async () => {
-    const { status, data } = await resendMobileOtp(`${orderId}`, otp || '0');
+    const { status } = await resendMobileOtp(`${orderId}`, otp || '0');
 
     if (!status) {
-      // setOpen(true);
-      // setAlertMsg(t('unable_to_process_your_request'));
-      // setSeverity('error');
     }
   };
 
   return (
     <div dir={locale === 'ar' ? 'rtl' : 'ltr'}>
       <div className={'flex flex-col items-center dyn-mt dyn-card-margin'}>
-        {/* <div className="flex  flex-col dyn-mt items-stretch">
-          <NoticeCard text={`${t('your_order_number')} #${orderId}`}></NoticeCard>
-        </div> */}
         <div className="group m-10 p-5  dyn-card-width text-white  bg-primary rounded-2xl ">
           <Label
             label={phoneVerification?.verifyDetails}
@@ -180,35 +128,6 @@ const PhoneVerification = () => {
               </div>
             </div>
             <div className=" flex-1  my-10 flex flex-col items-center  md:items-start">
-              {/* {
-                <p className=" inline-block text-sm md:text-base text-slate-400">
-                  {t('request_code')}
-                  {timer > 0 ? (
-                    <span>
-                      {' '}
-                      {t('in')}{' '}
-                      <span className="font-bold text-white">{timer + ` ${t('seconds')}`}</span>
-                    </span>
-                  ) : (
-                    <span>{t('here')}</span>
-                  )}
-                </p>
-              }
-              {
-                <p
-                  onClick={resendHandler}
-                  className=" text-base pt-1  text-secondaryColor decoration underline">
-                  <span
-                    className={
-                      timer > 0
-                        ? 'text-gray-400 underline cursor-pointer'
-                        : 'text-accent underline cursor-pointer'
-                    }>
-                    {t('resend')}
-                  </span>
-                </p>
-              } */}
-
               <div className="flex flex-row timerDiv">
                 <p
                   className="inline-block text-sm md:text-base text-slate-400"
@@ -233,13 +152,6 @@ const PhoneVerification = () => {
             </div>
           </div>
         </div>
-
-        {/* <div className=" mt-10 md:mt-14 text-center tracking-wide text-accent">
-          <h6>
-            {t('worng_phone_number')} <br />
-            <span className="underline">{t('change_receive_number')}</span>
-          </h6>
-        </div> */}
       </div>
     </div>
   );
