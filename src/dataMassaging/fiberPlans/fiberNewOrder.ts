@@ -3,6 +3,8 @@ import { responseType } from '../../interface/responseType.interface';
 import fiberPlansService from '../../services/fiberPlansServices/fiberPlansService';
 import { FAILURE, RESPONSE_ERROR, SUCCESS } from '../../services/apisConstants';
 import { FiberOrderResponse } from './type';
+import { useContext } from 'react';
+import AppContext from '@/AppContext';
 
 const fiberNewOrder = async (
   period: string,
@@ -12,6 +14,11 @@ const fiberNewOrder = async (
   workflow: string,
   orderId: string
 ): Promise<responseType<FiberOrderResponse>> => {
+  const value = useContext(AppContext);
+
+  const {
+    page: { errorMessages },
+  } = value.state.languages;
   return trackPromise(
     fiberPlansService
       .fiberNewOrder(period, provider, planId, odb, workflow, orderId)
@@ -28,7 +35,7 @@ const fiberNewOrder = async (
         return {
           status: true,
           code: status || FAILURE,
-          msg: data.message || 'Failed to create your order',
+          msg: data.message || errorMessages.failedTocreateOrder,
           data,
         };
       })
@@ -36,7 +43,7 @@ const fiberNewOrder = async (
         const { response } = e;
         return {
           status: false,
-          msg: response?.data?.message || 'Please try after sometime',
+          msg: response?.data?.message || errorMessages.tryAfterSometime,
           code: response.status || RESPONSE_ERROR,
         };
       })

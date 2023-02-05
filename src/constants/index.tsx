@@ -177,6 +177,7 @@ export const translations = {
         acceptSalam: 'I accept Salam’s ',
         termsConditions: 'Terms & Conditions',
         payingDeposit: 'You are paying now as deposit:',
+        payingDepositPrepaid: 'You are paying now:',
         creditDebit: {
           visa: 'Visa',
           american_express: 'American Express',
@@ -191,6 +192,15 @@ export const translations = {
         PayViaSadad: {
           sadad_text: 'You will receive Sadad billing number. ',
         },
+      },
+      errorMessages: {
+        failedToBookAppointment: 'Failed to book appointment',
+        failedTocreateOrder: 'Failed to create your order',
+        failedToGetFiberPlan: 'Failed for get fiber plans',
+        failedToGetTimeSlots: 'Failed to get time slots',
+        unableToFindFiberPlans:
+          'Unable to find fiber plans. Try again later...',
+        tryAfterSometime: 'Please try after sometime',
       },
       updateAcc: {
         enterDetails: 'Enter your details',
@@ -428,6 +438,15 @@ export const translations = {
         payViaSadad: {
           sadadText: 'سيصلك رقم دفع لخدمة سداد',
         },
+      },
+      errorMessages: {
+        failedToBookAppointment: 'Failed to book appointment',
+        failedTocreateOrder: 'Failed to create your order',
+        failedToGetFiberPlan: 'Failed for get fiber plans',
+        failedToGetTimeSlots: 'Failed to get time slots',
+        unableToFindFiberPlans:
+          'Unable to find fiber plans. Try again later...',
+        tryAfterSometime: 'Please try after sometime',
       },
       updateAcc: {
         enterDetails: 'أدخِل معلوماتك',
