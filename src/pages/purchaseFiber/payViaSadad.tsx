@@ -1,26 +1,13 @@
-//import './creditDebitStyle.css';
 'use client';
 
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { useRouter } from 'next/navigation';
-import InputComponent from '../../components/inputComponent';
-import InputField from '../../components/inputField';
 import StadiumButton from '../../components/stadiumButton';
 import TermsAndCondition from '../../components/dialog/termsCondition';
 import TermsAndConditionAR from '../../components/dialog/termsCondition_ar';
-import DropDownSelector, {
-  DropDownItem,
-} from '../../components/dropdownSelector';
 import AppRoutes from '../../constants/appRoutes';
-import DatePickerComp from '../../dataMassaging/common/DatePicker';
-import SelectComponent from '../../dataMassaging/common/SelectComponent';
-import checkEmptyVal from '../../dataMassaging/common/checkEmptyVal';
-// import { AlertContext } from '../../../../context/alertContext/AlertContext';
-import fiberPendingNewOrder from '../../dataMassaging/fiberPlans/fiberPendingNewOrder';
-import moment from 'moment';
 import payFiberPlan from '../../dataMassaging/fiberPlans/payFiberPlan';
-import { Box } from '@mui/material';
-// import './creditDebitStyle.css';
+
 import {
   fiberOrderStatesRoute,
   getFiberRoutKey,
@@ -43,7 +30,6 @@ export default function PayViaSadad({ planPrice }: any) {
   const [isAgreed, setIsAgreed] = useState(false);
   const orderId =
     typeof window !== 'undefined' ? localStorage.getItem('orderId') : '';
-  // const { setOpen, setAlertMsg, setSeverity } = useContext(AlertContext);
 
   const handleClick = async () => {
     if (isAgreed) {
@@ -92,9 +78,6 @@ export default function PayViaSadad({ planPrice }: any) {
   };
 
   const selectedLanguage = locale || 'en';
-
-  const redirectUrl = `${process.env.SALAM_URL}${selectedLanguage}/support/terms-conditions`;
-
   return (
     <>
       <div className={'flex flex-col items-center px-8'}>

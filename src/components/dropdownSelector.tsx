@@ -58,4 +58,5 @@ export type DropDownItem = {
   key: string;
   value: string;
   label: string;
+  labelAr?: string;
 };

@@ -57,19 +57,22 @@ export default function CreditDebit({ planPrice }: any) {
     typeof window !== 'undefined' ? localStorage.getItem('orderId') : '';
   const cardOptions = [
     {
-      key: purchaseFiberPlan?.creditDebit?.visa,
-      value: purchaseFiberPlan?.creditDebit?.visa,
-      label: purchaseFiberPlan?.creditDebit?.visa,
+      key: 'Visa',
+      value: 'Visa',
+      label: 'Visa',
+      labelAr: 'فيزا',
     },
     {
-      key: purchaseFiberPlan?.creditDebit?.american_express,
-      value: purchaseFiberPlan?.creditDebit?.american_express,
-      label: purchaseFiberPlan?.creditDebit?.american_express,
+      key: 'American Express',
+      value: 'American Express',
+      label: 'American Express',
+      labelAr: 'American Express',
     },
     {
-      key: purchaseFiberPlan?.creditDebit?.mastercard,
-      value: purchaseFiberPlan?.creditDebit?.mastercard,
-      label: purchaseFiberPlan?.creditDebit?.mastercard,
+      key: 'Mastercard',
+      value: 'Mastercard',
+      label: 'Mastercard',
+      labelAr: 'ماستركارد',
     },
   ];
 
