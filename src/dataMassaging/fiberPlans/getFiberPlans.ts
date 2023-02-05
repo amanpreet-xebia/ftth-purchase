@@ -3,15 +3,8 @@ import { FiberPlanDTO } from '../../interface/types';
 import { responseType } from '../../interface/responseType.interface';
 import fiberPlansService from '../../services/fiberPlansServices/fiberPlansService';
 import { SUCCESS } from '../../services/apisConstants';
-import { useContext } from 'react';
-import AppContext from '@/AppContext';
 
 const getFiberPlans = async (): Promise<responseType<FiberPlanDTO[]>> => {
-  const value = useContext(AppContext);
-
-  const {
-    page: { errorMessages },
-  } = value.state.languages;
   return trackPromise(
     fiberPlansService
       .getFiberPlans()
@@ -21,13 +14,19 @@ const getFiberPlans = async (): Promise<responseType<FiberPlanDTO[]>> => {
           return { status: true, msg: '', data };
         }
 
-        return { status: false, msg: errorMessages.failedToGetFiberPlan, data };
+        return {
+          status: false,
+          msg: 'Failed for get fiber plans',
+          data,
+        };
       })
       .catch((e: any) => {
         const { response } = e;
         return {
           status: false,
-          msg: response?.data?.message || errorMessages.unableToFindFiberPlans,
+          msg:
+            response?.data?.message ||
+            'Unable to find fiber plans. Try again later...',
         };
       })
   );
