@@ -14,11 +14,6 @@ const fiberNewOrder = async (
   workflow: string,
   orderId: string
 ): Promise<responseType<FiberOrderResponse>> => {
-  const value = useContext(AppContext);
-
-  const {
-    page: { errorMessages },
-  } = value.state.languages;
   return trackPromise(
     fiberPlansService
       .fiberNewOrder(period, provider, planId, odb, workflow, orderId)
@@ -35,7 +30,7 @@ const fiberNewOrder = async (
         return {
           status: true,
           code: status || FAILURE,
-          msg: data.message || errorMessages.failedTocreateOrder,
+          msg: data.message || 'Failed to create your order',
           data,
         };
       })
@@ -43,7 +38,7 @@ const fiberNewOrder = async (
         const { response } = e;
         return {
           status: false,
-          msg: response?.data?.message || errorMessages.tryAfterSometime,
+          msg: response?.data?.message || 'Please try after sometime',
           code: response.status || RESPONSE_ERROR,
         };
       })

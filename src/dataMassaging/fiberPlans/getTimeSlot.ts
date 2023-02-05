@@ -2,15 +2,8 @@ import { trackPromise } from 'react-promise-tracker';
 import { responseType } from '../../interface/responseType.interface';
 import fiberPlansService from '../../services/fiberPlansServices/fiberPlansService';
 import { SUCCESS } from '../../services/apisConstants';
-import { useContext } from 'react';
-import AppContext from '@/AppContext';
 
 const getTimeSlot = async (orderId: any): Promise<responseType<any>> => {
-  const value = useContext(AppContext);
-
-  const {
-    page: { errorMessages },
-  } = value.state.languages;
   return trackPromise(
     fiberPlansService
       .getTimeSlot(orderId)
@@ -21,7 +14,7 @@ const getTimeSlot = async (orderId: any): Promise<responseType<any>> => {
         }
         return {
           status: true,
-          msg: data.messages || errorMessages.failedToGetTimeSlots,
+          msg: data.messages || 'Failed to get time slots',
           data,
         };
       })
@@ -29,7 +22,9 @@ const getTimeSlot = async (orderId: any): Promise<responseType<any>> => {
         const { response } = e;
         return {
           status: false,
-          msg: response?.data?.message || errorMessages.unableToFindFiberPlans,
+          msg:
+            response?.data?.message ||
+            'Unable to find fiber plans. Try again later...',
         };
       })
   );

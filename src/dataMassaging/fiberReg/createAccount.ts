@@ -10,11 +10,7 @@ const createAccount = async (
   userRecord: any
 ): Promise<responseType<FiberRegistrationType>> => {
   const { orderId, userDetails } = userRecord;
-  const value = useContext(AppContext);
 
-  const {
-    page: { errorMessages },
-  } = value.state.languages;
   return trackPromise(
     fiberRegistrationService
       .createAccount(orderId, userDetails)
@@ -26,7 +22,7 @@ const createAccount = async (
         return {
           status: false,
           code: status,
-          msg: data.messages || errorMessages.failedToBookAppointment,
+          msg: data.messages || 'Failed to book appointment',
           data,
         };
       })
@@ -35,7 +31,7 @@ const createAccount = async (
         return {
           status: false,
           code: response.status || RESPONSE_ERROR,
-          msg: response?.data?.message || errorMessages.tryAfterSometime,
+          msg: response?.data?.message || 'Please try after sometime',
           errors: response?.data?.errors || {},
         };
       })
