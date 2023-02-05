@@ -27,6 +27,7 @@ import {
 // import { useTranslation } from 'react-i18next';
 import AppContext from '../../AppContext';
 import { AlertContext } from '../../context/alertContext/AlertContext';
+import { AuthTokenContext } from '../../context/AuthToken';
 
 export default function CreditDebit({ planPrice }: any) {
   const value = useContext(AppContext);
@@ -37,7 +38,7 @@ export default function CreditDebit({ planPrice }: any) {
     confirm,
   } = value.state.languages;
   const { setOpen, setAlertMsg, setSeverity } = useContext(AlertContext);
-
+  const { orderDetails } = useContext(AuthTokenContext);
   const [isTermsDialogVisible, setTermsDialog] = useState(false);
   const navigate = useRouter();
   const [isAgreed, setIsAgreed] = useState(false);
@@ -350,11 +351,10 @@ export default function CreditDebit({ planPrice }: any) {
           <div className="flex justify-end  my-10">
             <span className="text-center text-md text-slate-400">
               {' '}
-              {purchaseFiberPlan?.payingDeposit}
-              <span className="text-lg text-white text-red-50">
-                {' '}
-                {planPrice}
-              </span>
+              {orderDetails.planType === 'prepaid'
+                ? purchaseFiberPlan?.payingDeposit
+                : purchaseFiberPlan?.payingDepositPrepaid}
+              <span className="text-lg text-white"> {planPrice}</span>
             </span>
           </div>
 

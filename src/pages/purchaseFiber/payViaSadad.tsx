@@ -27,12 +27,13 @@ import {
 } from '../../constants/routeNavigationAccountState';
 import AppContext from '../../AppContext';
 import { AlertContext } from '../../context/alertContext/AlertContext';
+import { AuthTokenContext } from '../../context/AuthToken';
 
 export default function PayViaSadad({ planPrice }: any) {
   const value = useContext(AppContext);
   const { locale } = value.state;
   const { setOpen, setAlertMsg, setSeverity } = useContext(AlertContext);
-
+  const { orderDetails } = useContext(AuthTokenContext);
   const {
     page: { purchaseFiberPlan },
     confirm,
@@ -141,11 +142,10 @@ export default function PayViaSadad({ planPrice }: any) {
           </div>
           <div className="flex justify-end  my-10">
             <span className="text-center text-md text-slate-400">
-              {purchaseFiberPlan?.payingDeposit}
-              <span className="text-lg text-white text-red-50">
-                {' '}
-                {planPrice}
-              </span>
+              {orderDetails.planType === 'prepaid'
+                ? purchaseFiberPlan?.payingDeposit
+                : purchaseFiberPlan?.payingDepositPrepaid}
+              <span className="text-lg text-white "> {planPrice}</span>
             </span>
           </div>
 

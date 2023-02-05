@@ -177,6 +177,7 @@ export const translations = {
         acceptSalam: 'I accept Salam’s ',
         termsConditions: 'Terms & Conditions',
         payingDeposit: 'You are paying now as deposit:',
+        payingDepositPrepaid: 'You are paying now:',
         creditDebit: {
           visa: 'Visa',
           american_express: 'American Express',
