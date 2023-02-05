@@ -352,8 +352,8 @@ export default function CreditDebit({ planPrice }: any) {
             <span className="text-center text-md text-slate-400">
               {' '}
               {orderDetails.planType === 'prepaid'
-                ? purchaseFiberPlan?.payingDeposit
-                : purchaseFiberPlan?.payingDepositPrepaid}
+                ? purchaseFiberPlan?.payingDepositPrepaid
+                : purchaseFiberPlan?.payingDeposit}
               <span className="text-lg text-white"> {planPrice}</span>
             </span>
           </div>

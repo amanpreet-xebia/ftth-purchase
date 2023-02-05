@@ -143,8 +143,8 @@ export default function PayViaSadad({ planPrice }: any) {
           <div className="flex justify-end  my-10">
             <span className="text-center text-md text-slate-400">
               {orderDetails.planType === 'prepaid'
-                ? purchaseFiberPlan?.payingDeposit
-                : purchaseFiberPlan?.payingDepositPrepaid}
+                ? purchaseFiberPlan?.payingDepositPrepaid
+                : purchaseFiberPlan?.payingDeposit}
               <span className="text-lg text-white "> {planPrice}</span>
             </span>
           </div>

@@ -193,6 +193,15 @@ export const translations = {
           sadad_text: 'You will receive Sadad billing number. ',
         },
       },
+      errorMessages: {
+        failedToBookAppointment: 'Failed to book appointment',
+        failedTocreateOrder: 'Failed to create your order',
+        failedToGetFiberPlan: 'Failed for get fiber plans',
+        failedToGetTimeSlots: 'Failed to get time slots',
+        unableToFindFiberPlans:
+          'Unable to find fiber plans. Try again later...',
+        tryAfterSometime: 'Please try after sometime',
+      },
       updateAcc: {
         enterDetails: 'Enter your details',
         email: 'Email*',
@@ -429,6 +438,15 @@ export const translations = {
         payViaSadad: {
           sadadText: 'سيصلك رقم دفع لخدمة سداد',
         },
+      },
+      errorMessages: {
+        failedToBookAppointment: 'Failed to book appointment',
+        failedTocreateOrder: 'Failed to create your order',
+        failedToGetFiberPlan: 'Failed for get fiber plans',
+        failedToGetTimeSlots: 'Failed to get time slots',
+        unableToFindFiberPlans:
+          'Unable to find fiber plans. Try again later...',
+        tryAfterSometime: 'Please try after sometime',
       },
       updateAcc: {
         enterDetails: 'أدخِل معلوماتك',
