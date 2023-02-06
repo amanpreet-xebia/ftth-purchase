@@ -7,8 +7,7 @@ const storedLang =
     : 'en';
 
 export default axios.create({
-  //baseURL: `${process.env.API_BASE_LOCAL_URL}`,
-  baseURL: `${process.env.API_BASE_PROD_URL}`,
+  baseURL: `${process.env.API_BASE_URL}`,
   headers: {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Credentials': 'true',
