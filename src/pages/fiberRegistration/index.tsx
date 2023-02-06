@@ -62,8 +62,13 @@ const fiberRegistration = () => {
         localStorage.setItem('orderId', data?.orderId?.toString() || '');
       }
       if (data?.state?.trim()) {
-        localStorage.setItem('token', `${data?.token}` || '');
-        localStorage.setItem('orderId', `${data?.orderId}` || '');
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('token', `${data?.token}` || '');
+          localStorage.setItem('orderId', `${data?.orderId}` || '');
+          localStorage.setItem('emailId', email);
+          localStorage.setItem('mobileNumber', mobileNumber);
+        }
+
         setOrderID(data?.orderId);
         navigate.push(fiberOrderStatesRoute(data?.state));
         return;
@@ -77,7 +82,7 @@ const fiberRegistration = () => {
       setErrorMsgListRes(errors);
     }
   };
-  localStorage.setItem('emailId', email);
+
   const handleFirstName = (value: any) => {
     setFirstName(value);
   };

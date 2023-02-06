@@ -3,6 +3,8 @@ import { responseType } from '../../interface/responseType.interface';
 import fiberPlansService from '../../services/fiberPlansServices/fiberPlansService';
 import { FAILURE, RESPONSE_ERROR, SUCCESS } from '../../services/apisConstants';
 import { FiberOrderResponse } from './type';
+import { useContext } from 'react';
+import AppContext from '@/AppContext';
 
 const fiberNewOrder = async (
   period: string,
@@ -37,7 +39,7 @@ const fiberNewOrder = async (
         return {
           status: false,
           msg: response?.data?.message || 'Please try after sometime',
-          code: response.status || RESPONSE_ERROR,
+          code: response?.status || RESPONSE_ERROR,
         };
       })
   );

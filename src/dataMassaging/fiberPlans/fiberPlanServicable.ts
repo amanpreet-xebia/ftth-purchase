@@ -12,21 +12,21 @@ const fiberPlanServicable = async (
   return trackPromise(
     fiberPlansService
       .fiberPlanServicable(provider, planId, plateId)
-      .then((response : any) => {
+      .then((response: any) => {
         const { status, data } = response;
         if (status === SUCCESS) {
           return {
             status: true,
             msg: '',
             data,
-            code: status
+            code: status,
           };
         }
         return {
           status: true,
           code: status || FAILURE,
           msg: `Error Occured: ${status} ${data.message}`,
-          data
+          data,
         };
       })
       .catch((e: any) => {
@@ -34,7 +34,7 @@ const fiberPlanServicable = async (
         return {
           status: false,
           msg: response?.data?.message || 'Please try after sometime.',
-          code: response.status || RESPONSE_ERROR
+          code: response?.status || RESPONSE_ERROR,
         };
       })
   );

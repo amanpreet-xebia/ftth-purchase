@@ -8,19 +8,25 @@ const getFiberPlans = async (): Promise<responseType<FiberPlanDTO[]>> => {
   return trackPromise(
     fiberPlansService
       .getFiberPlans()
-      .then((response :any) => {
+      .then((response: any) => {
         const { status, data } = response;
         if (status === SUCCESS) {
           return { status: true, msg: '', data };
         }
 
-        return { status: false, msg: 'Faile for get fiber plans', data };
+        return {
+          status: false,
+          msg: 'Failed for get fiber plans',
+          data,
+        };
       })
       .catch((e: any) => {
         const { response } = e;
         return {
           status: false,
-          msg: response?.data?.message || 'Unable to fiber plans. Try again later'
+          msg:
+            response?.data?.message ||
+            'Unable to find fiber plans. Try again later...',
         };
       })
   );

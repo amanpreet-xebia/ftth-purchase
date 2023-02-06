@@ -7,10 +7,7 @@ import AppRoutes from '../../constants/appRoutes';
 
 import fiberNewOrder from '../../dataMassaging/fiberPlans/fiberNewOrder';
 import fiberPendingNewOrder from '../../dataMassaging/fiberPlans/fiberPendingNewOrder';
-import {
-  fiberOrderStatesRoute,
-  getFiberRoutKey,
-} from '../../constants/routeNavigationAccountState';
+import { fiberOrderStatesRoute } from '../../constants/routeNavigationAccountState';
 import FindPlateNumber from '../../components/dialog/findPlateNumber';
 import StadiumButton from '../../components/stadiumButton';
 import InputField from '../../components/inputField';
@@ -36,7 +33,6 @@ export default function fiberPlateLocationPick() {
     next,
     typeHere,
   } = value.state.languages;
-  // const { setAuthToken, setOrderID } = useContext(AuthTokenContext);
   const [selectedProvider, setSelectedProvider] = useState<any>(null);
   const [plateId, setPlateId] = useState<any>(null);
   const [period, setPeriod] = useState<any>(null);
@@ -53,24 +49,28 @@ export default function fiberPlateLocationPick() {
 
   const providerItems: DropDownItem[] = [
     {
-      key: fiberPlateLocation?.dropdownOpt?.ITC,
-      value: fiberPlateLocation?.dropdownOpt?.ITC,
-      label: fiberPlateLocation?.dropdownOpt?.ITC,
+      key: 'ITC',
+      value: 'ITC',
+      label: 'ITC',
+      labelAr: 'سلام',
     },
     {
-      key: fiberPlateLocation?.dropdownOpt?.DAWIYAT,
-      value: fiberPlateLocation?.dropdownOpt?.DAWIYAT,
-      label: fiberPlateLocation?.dropdownOpt?.DAWIYAT,
+      key: 'DAWIYAT',
+      value: 'DAWIYAT',
+      label: 'DAWIYAT',
+      labelAr: 'ضوئيات',
     },
     {
-      key: fiberPlateLocation?.dropdownOpt?.STC,
-      value: fiberPlateLocation?.dropdownOpt?.STC,
-      label: fiberPlateLocation?.dropdownOpt?.STC,
+      key: 'STC',
+      value: 'STC',
+      label: 'STC',
+      labelAr: 'STC',
     },
     {
-      key: fiberPlateLocation?.dropdownOpt?.MOBILY,
-      value: fiberPlateLocation?.dropdownOpt?.MOBILY,
-      label: fiberPlateLocation?.dropdownOpt?.MOBILY,
+      key: 'MOBILY',
+      value: 'MOBILY',
+      label: 'MOBILY',
+      labelAr: 'اكتب هنا',
     },
   ];
 
@@ -78,17 +78,20 @@ export default function fiberPlateLocationPick() {
     {
       key: '3',
       value: '3',
-      label: fiberPlateLocation?.periodOpt?.threeMonth,
+      label: '3 Months',
+      labelAr: '3 اشهر',
     },
     {
       key: '6',
       value: '6',
-      label: fiberPlateLocation?.periodOpt?.sixMonth,
+      label: '6 Months',
+      labelAr: '6 اشهر',
     },
     {
       key: '12',
       value: '12',
-      label: fiberPlateLocation?.periodOpt?.twelveMonth,
+      label: '12 Months',
+      labelAr: '12 اشهر',
     },
   ];
 
@@ -113,7 +116,9 @@ export default function fiberPlateLocationPick() {
 
       if (pendingOrder.data?.state?.trim()) {
         navigator.push(fiberOrderStatesRoute(pendingOrder.data?.state));
-        localStorage.setItem('state', pendingOrder.data?.state);
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('state', pendingOrder.data?.state);
+        }
         return;
       } else {
         navigator.push(AppRoutes.fiberRegistration);

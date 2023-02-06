@@ -27,6 +27,7 @@ import {
 // import { useTranslation } from 'react-i18next';
 import AppContext from '../../AppContext';
 import { AlertContext } from '../../context/alertContext/AlertContext';
+import { AuthTokenContext } from '../../context/AuthToken';
 
 export default function CreditDebit({ planPrice }: any) {
   const value = useContext(AppContext);
@@ -37,7 +38,7 @@ export default function CreditDebit({ planPrice }: any) {
     confirm,
   } = value.state.languages;
   const { setOpen, setAlertMsg, setSeverity } = useContext(AlertContext);
-
+  const { orderDetails } = useContext(AuthTokenContext);
   const [isTermsDialogVisible, setTermsDialog] = useState(false);
   const navigate = useRouter();
   const [isAgreed, setIsAgreed] = useState(false);
@@ -57,19 +58,22 @@ export default function CreditDebit({ planPrice }: any) {
     typeof window !== 'undefined' ? localStorage.getItem('orderId') : '';
   const cardOptions = [
     {
-      key: purchaseFiberPlan?.creditDebit?.visa,
-      value: purchaseFiberPlan?.creditDebit?.visa,
-      label: purchaseFiberPlan?.creditDebit?.visa,
+      key: 'Visa',
+      value: 'Visa',
+      label: 'Visa',
+      labelAr: 'فيزا',
     },
     {
-      key: purchaseFiberPlan?.creditDebit?.american_express,
-      value: purchaseFiberPlan?.creditDebit?.american_express,
-      label: purchaseFiberPlan?.creditDebit?.american_express,
+      key: 'American Express',
+      value: 'American Express',
+      label: 'American Express',
+      labelAr: 'American Express',
     },
     {
-      key: purchaseFiberPlan?.creditDebit?.mastercard,
-      value: purchaseFiberPlan?.creditDebit?.mastercard,
-      label: purchaseFiberPlan?.creditDebit?.mastercard,
+      key: 'Mastercard',
+      value: 'Mastercard',
+      label: 'Mastercard',
+      labelAr: 'ماستركارد',
     },
   ];
 
@@ -101,10 +105,12 @@ export default function CreditDebit({ planPrice }: any) {
           return;
         } else {
           navigate.push(AppRoutes.bookAppointment);
-          localStorage.setItem(
-            'state',
-            getFiberRoutKey(AppRoutes.bookAppointment)
-          );
+          if (typeof window !== 'undefined') {
+            localStorage.setItem(
+              'state',
+              getFiberRoutKey(AppRoutes.bookAppointment)
+            );
+          }
         }
       } else {
         setOpen(true);
@@ -350,11 +356,10 @@ export default function CreditDebit({ planPrice }: any) {
           <div className="flex justify-end  my-10">
             <span className="text-center text-md text-slate-400">
               {' '}
-              {purchaseFiberPlan?.payingDeposit}
-              <span className="text-lg text-white text-red-50">
-                {' '}
-                {planPrice}
-              </span>
+              {orderDetails.planType === 'prepaid'
+                ? purchaseFiberPlan?.payingDepositPrepaid
+                : purchaseFiberPlan?.payingDeposit}
+              <span className="text-lg text-white"> {planPrice}</span>
             </span>
           </div>
 

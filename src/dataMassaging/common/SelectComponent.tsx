@@ -1,13 +1,14 @@
 /* eslint-disable react/react-in-jsx-scope */
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
+import Select from '@mui/material/Select';
+import AppContext from '@/AppContext';
 
 const SelectComponent = (props: any) => {
   const [selectedValue, setSelectedValue] = useState(props.defaultVal || '');
-
   const { handleEventChange, availableOption } = props;
+  const value = useContext(AppContext);
+  const { locale } = value.state;
 
   const handleChange = (e: any) => {
     setSelectedValue(e.target?.value);
@@ -30,7 +31,7 @@ const SelectComponent = (props: any) => {
         const item = availableOption.find(
           ({ value }: { value: any }) => value === selected
         );
-        return item.label;
+        return locale === 'en' ? item?.label : item.labelAr;
       }}
     >
       <MenuItem disabled value="">
@@ -39,7 +40,7 @@ const SelectComponent = (props: any) => {
       {availableOption &&
         availableOption.map((ele: any, index: any) => (
           <MenuItem value={ele.value} key={index}>
-            {ele.label}
+            {locale === 'en' ? ele?.label : ele.labelAr}
           </MenuItem>
         ))}
     </Select>
