@@ -4,9 +4,9 @@ const token =
 const storedLang =
   typeof window !== 'undefined'
     ? localStorage.getItem('selectedLanguage')
-    : 'en';
+    : null;
 
-export default axios.create({
+const api = axios.create({
   baseURL: `${process.env.API_BASE_URL}`,
   headers: {
     'Access-Control-Allow-Origin': '*',
@@ -18,3 +18,16 @@ export default axios.create({
     'Accept-language': storedLang,
   },
 });
+api.interceptors.request.use(
+  (config) => {
+    config.headers['Authorization'] = `Bearer ${token}`;
+    config.headers['Accept-language'] =
+      window?.localStorage.getItem('selectedLanguage');
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
+export default api;
