@@ -1,38 +1,54 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is a [Next.js 13](https://nextjs.org/) project using [Tailwind](https://tailwindcss.com/).
 
-## Getting Started
+You can use [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to execute the following, we're using yarn:
 
-First, run the development server:
+```
+yarn
+```
+and to run it over your localhost:`port` you can run
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+yarn run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+This porject uses **`Client Side Components`** you can read more about it on [server-and-client-components](https://beta.nextjs.org/docs/rendering/server-and-client-components), this enables us to use client side data fetching and all the react features and hooks out of the box.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+Directory Structure
+----------------------
+▶️ This project uses [src Directory](https://nextjs.org/docs/advanced-features/src-directory) structure, all the frontend pages and routes are supposed to be added to the `src` folder.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+▶️ The entry point of our application will be `src/pages/index.tsx` or the main page.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+▶️ The head can be editied inside the `src/pages/_document.tsx` file for SEO.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+▶️ AuthtokenProvider and AppContextProvider wrapping the whole application can be found inside `src/pages/_app.tsx`.
 
-## Learn More
+Styling
+----------------------
+All the styles are added in the `src/styles/global.css` file and will be following TailwindCSS as well.
 
-To learn more about Next.js, take a look at the following resources:
+Translations
+----------------------
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+To add content to the translation object which can be found inside the `src/constants/index.tsx` file, 
+add the arabic content to the respective key in the `ar` object.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Deployment
+----------------------
 
-## Deploy on Vercel
+To deploy it to production
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+▶️ we need the [export] (https://nextjs.org/docs/advanced-features/static-html-export) of the static files which is export of the Next.js application to static HTML, which can be run standalone without the need of a Node.js server.
+
+▶️ We have to create a prod build by executing ⭐ **`yarn export`** which executes two seperate commands 
+
+    👉 `next build`
+
+    👉 `next export`
+
+▶️ executing the above command will create a `_next` folder in out root directory and an `out` folder that will contain all the static HTML files that can be deployed to the production.
+
+
+**`Please Note: `** NextJS 13 doesnt support next export with app Dir since App Dir is still experimental feature please refer [blog](https://beta.nextjs.org/docs/app-directory-roadmap)
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
