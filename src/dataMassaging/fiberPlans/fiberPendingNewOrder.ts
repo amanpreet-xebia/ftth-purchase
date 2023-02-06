@@ -11,21 +11,21 @@ const fiberPendingNewOrder = async (
   return trackPromise(
     fiberPlansService
       .fiberPendingNewOrder(orderId, mockState)
-      .then((response :any) => {
+      .then((response: any) => {
         const { status, data } = response;
         if (status === SUCCESS) {
           return {
             status: true,
             msg: '',
             data,
-            code: status
+            code: status,
           };
         }
         return {
           status: true,
           code: status || FAILURE,
           msg: data.message || 'Error while getting fiber availablility',
-          data
+          data,
         };
       })
       .catch((e: any) => {
@@ -33,7 +33,7 @@ const fiberPendingNewOrder = async (
         return {
           status: false,
           msg: response?.data?.message || 'Please try after sometime',
-          code: response.status || RESPONSE_ERROR
+          code: response?.status || RESPONSE_ERROR,
         };
       })
   );
