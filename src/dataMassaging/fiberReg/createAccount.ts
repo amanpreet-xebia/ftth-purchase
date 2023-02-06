@@ -30,7 +30,7 @@ const createAccount = async (
         const { response } = e;
         return {
           status: false,
-          code: response.status || RESPONSE_ERROR,
+          code: response?.status || RESPONSE_ERROR,
           msg: response?.data?.message || 'Please try after sometime',
           errors: response?.data?.errors || {},
         };

@@ -4,7 +4,10 @@ import { responseType } from '../../interface/responseType.interface';
 import { FiberRegistrationType } from '../../interface/fiberRegistration/fiberRegistration.interface';
 import { RESPONSE_ERROR } from '../../services/apisConstants';
 
-const payFiberPlan = async (paymentDetails: any, orderId: any): Promise<responseType<any>> => {
+const payFiberPlan = async (
+  paymentDetails: any,
+  orderId: any
+): Promise<responseType<any>> => {
   return trackPromise(
     fiberPlansService
       .payFiberPlan(orderId, paymentDetails)
@@ -19,9 +22,9 @@ const payFiberPlan = async (paymentDetails: any, orderId: any): Promise<response
         const { response } = e;
         return {
           status: false,
-          code: response.status || RESPONSE_ERROR,
+          code: response?.status || RESPONSE_ERROR,
           msg: response?.data?.message || 'Please try after sometime',
-          errors: response?.data?.errors || {}
+          errors: response?.data?.errors || {},
         };
       })
   );

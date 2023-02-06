@@ -11,7 +11,7 @@ const updateAccountApi = async (
   return trackPromise(
     fiberRegistrationService
       .updateAccount(orderId, password)
-      .then((response : any) => {
+      .then((response: any) => {
         const { status, data } = response;
         if (status === SUCCESS) {
           return { status: true, msg: '', data, code: status };
@@ -20,7 +20,7 @@ const updateAccountApi = async (
           status: true,
           code: status || FAILURE,
           msg: `Error Occured: ${status} ${data.message}`,
-          data
+          data,
         };
       })
       .catch((e: any) => {
@@ -28,7 +28,7 @@ const updateAccountApi = async (
         return {
           status: false,
           msg: response?.data?.message || 'Please try after sometime',
-          code: response.status || RESPONSE_ERROR
+          code: response?.status || RESPONSE_ERROR,
         };
       })
   );

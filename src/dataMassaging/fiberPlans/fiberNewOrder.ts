@@ -39,7 +39,7 @@ const fiberNewOrder = async (
         return {
           status: false,
           msg: response?.data?.message || 'Please try after sometime',
-          code: response.status || RESPONSE_ERROR,
+          code: response?.status || RESPONSE_ERROR,
         };
       })
   );
