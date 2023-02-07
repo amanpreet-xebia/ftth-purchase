@@ -5,6 +5,7 @@ export const errorsEn = {
   failedToGetTimeSlots: 'Failed to get time slots',
   unableToFindFiberPlans: 'Unable to find fiber plans. Try again later...',
   tryAfterSometime: 'Please try after sometime',
+  fiberAvailabilityError: 'Error while getting fiber availablility',
 };
 
 export const errorsAr = {
@@ -14,4 +15,5 @@ export const errorsAr = {
   failedToGetTimeSlots: 'Failed to get time slots',
   unableToFindFiberPlans: 'Unable to find fiber plans. Try again later...',
   tryAfterSometime: 'Please try after sometime',
+  fiberAvailabilityError: 'Error while getting fiber availablility',
 };

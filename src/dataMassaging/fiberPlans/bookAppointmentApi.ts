@@ -2,6 +2,8 @@ import { trackPromise } from 'react-promise-tracker';
 import fiberPlansService from '../../services/fiberPlansServices/fiberPlansService';
 import { responseType } from '../../interface/responseType.interface';
 import { RESPONSE_ERROR } from '../../services/apisConstants';
+import { errorTranslations } from '@/pages/utilities/errorTranslations';
+import { errorsAr, errorsEn } from '@/constants/errorConstants';
 
 const bookAppointmentApi = async (
   paymentDetails: any,
@@ -15,7 +17,13 @@ const bookAppointmentApi = async (
         if (message) {
           return {
             status: false,
-            msg: data.messages || 'Failed to book appointment',
+            msg:
+              data.messages ||
+              errorTranslations(
+                errorsEn.failedToBookAppointment,
+                errorsAr.failedToBookAppointment
+              ),
+
             data: {},
           };
         }
@@ -26,7 +34,12 @@ const bookAppointmentApi = async (
         return {
           status: false,
           code: response?.status || RESPONSE_ERROR,
-          msg: response?.data?.message || 'Please try after sometime',
+          msg:
+            response?.data?.message ||
+            errorTranslations(
+              errorsEn.tryAfterSometime,
+              errorsAr.tryAfterSometime
+            ),
         };
       })
   );
