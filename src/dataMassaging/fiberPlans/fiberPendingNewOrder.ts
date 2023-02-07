@@ -3,6 +3,8 @@ import { responseType } from '../../interface/responseType.interface';
 import fiberPlansService from '../../services/fiberPlansServices/fiberPlansService';
 import { FAILURE, RESPONSE_ERROR, SUCCESS } from '../../services/apisConstants';
 import { FiberPendingNewOrderResponse } from './type';
+import { errorTranslations } from '@/pages/utilities/errorTranslations';
+import { errorsAr, errorsEn } from '@/constants/errorConstants';
 
 const fiberPendingNewOrder = async (
   orderId: string,
@@ -24,7 +26,12 @@ const fiberPendingNewOrder = async (
         return {
           status: true,
           code: status || FAILURE,
-          msg: data.message || 'Error while getting fiber availablility',
+          msg:
+            data.message ||
+            errorTranslations(
+              errorsEn.fiberAvailabilityError,
+              errorsAr.fiberAvailabilityError
+            ),
           data,
         };
       })
@@ -32,7 +39,12 @@ const fiberPendingNewOrder = async (
         const { response } = e;
         return {
           status: false,
-          msg: response?.data?.message || 'Please try after sometime',
+          msg:
+            response?.data?.message ||
+            errorTranslations(
+              errorsEn.tryAfterSometime,
+              errorsAr.tryAfterSometime
+            ),
           code: response?.status || RESPONSE_ERROR,
         };
       })

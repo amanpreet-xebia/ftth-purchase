@@ -3,6 +3,8 @@ import { responseType } from '../../interface/responseType.interface';
 import fiberPlansService from '../../services/fiberPlansServices/fiberPlansService';
 import { FAILURE, RESPONSE_ERROR, SUCCESS } from '../../services/apisConstants';
 import { FiberServicableResponse } from './type';
+import { errorTranslations } from '@/pages/utilities/errorTranslations';
+import { errorsAr, errorsEn } from '@/constants/errorConstants';
 
 const fiberPlanServicable = async (
   provider: string,
@@ -33,7 +35,12 @@ const fiberPlanServicable = async (
         const { response } = e;
         return {
           status: false,
-          msg: response?.data?.message || 'Please try after sometime.',
+          msg:
+            response?.data?.message ||
+            errorTranslations(
+              errorsEn.tryAfterSometime,
+              errorsAr.tryAfterSometime
+            ),
           code: response?.status || RESPONSE_ERROR,
         };
       })
