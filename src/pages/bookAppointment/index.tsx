@@ -38,14 +38,14 @@ export default function bookAppointment() {
   const [checkApiCall, setCheckApiCall] = useState(false);
 
   useEffect(() => {
-    window.history.pushState(null, '', window.location.href);
-    window.onpopstate = function () {
-      window.history.go(1);
-    };
+    // window.history.pushState(null, '', window.location.href);
+    // window.onpopstate = function () {
+    //   window.history.go(1);
+    // };
     if (orderId) {
       (async () => {
         const { status, msg, data } = await getTimeSlot(orderId);
-        if (status && data?.availableSlots) {
+        if (status && data?.availableSlots.length) {
           setAvailableTimeSlot(data?.availableSlots);
         } else {
           setOpen(true);
@@ -57,7 +57,6 @@ export default function bookAppointment() {
       })();
     }
   }, []);
-
 
   const handleAppointment = async () => {
     if (!selTimeSlot) {
