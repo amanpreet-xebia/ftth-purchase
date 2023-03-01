@@ -2,6 +2,8 @@ import { trackPromise } from 'react-promise-tracker';
 import { responseType } from '../../interface/responseType.interface';
 import fiberPlansService from '../../services/fiberPlansServices/fiberPlansService';
 import { SUCCESS } from '../../services/apisConstants';
+import errorTranslations from '@/pages/utilities/errorTranslations';
+import { errorsAr, errorsEn } from '@/constants/errorConstants';
 
 const getTimeSlot = async (orderId: any): Promise<responseType<any>> => {
   return trackPromise(
@@ -14,7 +16,12 @@ const getTimeSlot = async (orderId: any): Promise<responseType<any>> => {
         }
         return {
           status: true,
-          msg: data.messages || 'Failed to get time slots',
+          msg:
+            data.messages ||
+            errorTranslations(
+              errorsEn.failedToGetTimeSlots,
+              errorsAr.failedToGetTimeSlots
+            ),
           data,
         };
       })
@@ -24,7 +31,10 @@ const getTimeSlot = async (orderId: any): Promise<responseType<any>> => {
           status: false,
           msg:
             response?.data?.message ||
-            'Unable to find fiber plans. Try again later...',
+            errorTranslations(
+              errorsEn.unableToFindFiberPlans,
+              errorsAr.unableToFindFiberPlans
+            ),
         };
       })
   );

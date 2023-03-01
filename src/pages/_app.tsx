@@ -8,7 +8,7 @@ import AppContext from '../AppContext';
 import { translations } from '../constants';
 import AuthTokenProvider from '../context/alertContext/AlertContext';
 import AuthToken from '../context/AuthToken';
-
+import TagManager from 'react-gtm-module';
 import Spinner from '../components/common/spinner/spinner';
 export default function App({ Component, pageProps }: AppProps) {
   const storedLang: string =
@@ -21,6 +21,7 @@ export default function App({ Component, pageProps }: AppProps) {
   const [showing, setShowing] = useState(false);
 
   useEffect(() => {
+    TagManager.initialize({ gtmId: 'GTM-W5GQGLX' });
     setShowing(true);
   }, []);
 

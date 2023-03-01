@@ -1,8 +1,9 @@
 import { trackPromise } from 'react-promise-tracker';
 import fiberPlansService from '../../services/fiberPlansServices/fiberPlansService';
 import { responseType } from '../../interface/responseType.interface';
-import { FiberRegistrationType } from '../../interface/fiberRegistration/fiberRegistration.interface';
 import { RESPONSE_ERROR } from '../../services/apisConstants';
+import { errorsAr, errorsEn } from '@/constants/errorConstants';
+import errorTranslations from '@/pages/utilities/errorTranslations';
 
 const payFiberPlan = async (
   paymentDetails: any,
@@ -23,7 +24,12 @@ const payFiberPlan = async (
         return {
           status: false,
           code: response?.status || RESPONSE_ERROR,
-          msg: response?.data?.message || 'Please try after sometime',
+          msg:
+            response?.data?.message ||
+            errorTranslations(
+              errorsEn.tryAfterSometime,
+              errorsAr.tryAfterSometime
+            ),
           errors: response?.data?.errors || {},
         };
       })

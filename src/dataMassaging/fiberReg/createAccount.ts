@@ -3,8 +3,8 @@ import fiberRegistrationService from '../../services/fiberRegistrationServices/f
 import { responseType } from '../../interface/responseType.interface';
 import { FiberRegistrationType } from '../../interface/fiberRegistration/fiberRegistration.interface';
 import { RESPONSE_ERROR, SUCCESS } from '../../services/apisConstants';
-import { useContext } from 'react';
-import AppContext from '@/AppContext';
+import errorTranslations from '@/pages/utilities/errorTranslations';
+import { errorsAr, errorsEn } from '@/constants/errorConstants';
 
 const createAccount = async (
   userRecord: any
@@ -22,7 +22,12 @@ const createAccount = async (
         return {
           status: false,
           code: status,
-          msg: data.messages || 'Failed to book appointment',
+          msg:
+            data.messages ||
+            errorTranslations(
+              errorsEn.failedToBookAppointment,
+              errorsAr.failedToBookAppointment
+            ),
           data,
         };
       })
@@ -31,7 +36,12 @@ const createAccount = async (
         return {
           status: false,
           code: response?.status || RESPONSE_ERROR,
-          msg: response?.data?.message || 'Please try after sometime',
+          msg:
+            response?.data?.message ||
+            errorTranslations(
+              errorsEn.tryAfterSometime,
+              errorsAr.tryAfterSometime
+            ),
           errors: response?.data?.errors || {},
         };
       })

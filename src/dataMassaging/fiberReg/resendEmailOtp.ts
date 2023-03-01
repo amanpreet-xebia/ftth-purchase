@@ -1,3 +1,5 @@
+import { errorsAr, errorsEn } from '@/constants/errorConstants';
+import errorTranslations from '@/pages/utilities/errorTranslations';
 import { trackPromise } from 'react-promise-tracker';
 import { responseType } from '../../interface/responseType.interface';
 import { FAILURE, RESPONSE_ERROR, SUCCESS } from '../../services/apisConstants';
@@ -27,7 +29,12 @@ const resendEmailOtp = async (
         const { response } = e;
         return {
           status: false,
-          msg: response?.data?.message || 'Please try after sometime.',
+          msg:
+            response?.data?.message ||
+            errorTranslations(
+              errorsEn.tryAfterSometime,
+              errorsAr.tryAfterSometime
+            ),
           code: response?.status || RESPONSE_ERROR,
         };
       })

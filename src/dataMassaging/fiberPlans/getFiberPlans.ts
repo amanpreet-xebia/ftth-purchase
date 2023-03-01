@@ -3,6 +3,8 @@ import { FiberPlanDTO } from '../../interface/types';
 import { responseType } from '../../interface/responseType.interface';
 import fiberPlansService from '../../services/fiberPlansServices/fiberPlansService';
 import { SUCCESS } from '../../services/apisConstants';
+import { errorsAr, errorsEn } from '@/constants/errorConstants';
+import errorTranslations from '@/pages/utilities/errorTranslations';
 
 const getFiberPlans = async (): Promise<responseType<FiberPlanDTO[]>> => {
   return trackPromise(
@@ -16,7 +18,11 @@ const getFiberPlans = async (): Promise<responseType<FiberPlanDTO[]>> => {
 
         return {
           status: false,
-          msg: 'Failed for get fiber plans',
+          msg: errorTranslations(
+            errorsEn.failedToGetFiberPlan,
+            errorsAr.failedToGetFiberPlan
+          ),
+
           data,
         };
       })
@@ -26,7 +32,12 @@ const getFiberPlans = async (): Promise<responseType<FiberPlanDTO[]>> => {
           status: false,
           msg:
             response?.data?.message ||
-            'Unable to find fiber plans. Try again later...',
+            errorTranslations(
+              errorsEn.unableToFindFiberPlans,
+              errorsAr.unableToFindFiberPlans
+            ),
+
+          // 'Unable to find fiber plans. Try again later...',
         };
       })
   );
