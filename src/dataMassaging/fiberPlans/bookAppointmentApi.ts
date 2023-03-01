@@ -2,7 +2,7 @@ import { trackPromise } from 'react-promise-tracker';
 import fiberPlansService from '../../services/fiberPlansServices/fiberPlansService';
 import { responseType } from '../../interface/responseType.interface';
 import { RESPONSE_ERROR } from '../../services/apisConstants';
-import { errorTranslations } from '@/pages/utilities/errorTranslations';
+import errorTranslations from '@/pages/utilities/errorTranslations';
 import { errorsAr, errorsEn } from '@/constants/errorConstants';
 
 const bookAppointmentApi = async (

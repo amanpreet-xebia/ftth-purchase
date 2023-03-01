@@ -3,7 +3,7 @@ import fiberRegistrationService from '../../services/fiberRegistrationServices/f
 import { responseType } from '../../interface/responseType.interface';
 import { FiberRegistrationType } from '../../interface/fiberRegistration/fiberRegistration.interface';
 import { RESPONSE_ERROR, SUCCESS } from '../../services/apisConstants';
-import { errorTranslations } from '@/pages/utilities/errorTranslations';
+import errorTranslations from '@/pages/utilities/errorTranslations';
 import { errorsAr, errorsEn } from '@/constants/errorConstants';
 
 const createAccount = async (

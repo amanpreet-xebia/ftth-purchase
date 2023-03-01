@@ -3,7 +3,7 @@ import fiberPlansService from '../../services/fiberPlansServices/fiberPlansServi
 import { responseType } from '../../interface/responseType.interface';
 import { RESPONSE_ERROR } from '../../services/apisConstants';
 import { errorsAr, errorsEn } from '@/constants/errorConstants';
-import { errorTranslations } from '@/pages/utilities/errorTranslations';
+import errorTranslations from '@/pages/utilities/errorTranslations';
 
 const payFiberPlan = async (
   paymentDetails: any,

@@ -4,7 +4,7 @@ import fiberPlansService from '../../services/fiberPlansServices/fiberPlansServi
 import { FAILURE, RESPONSE_ERROR, SUCCESS } from '../../services/apisConstants';
 import { FiberOrderResponse } from './type';
 
-import { errorTranslations } from '@/pages/utilities/errorTranslations';
+import errorTranslations from '@/pages/utilities/errorTranslations';
 import { errorsAr, errorsEn } from '@/constants/errorConstants';
 
 const fiberNewOrder = async (

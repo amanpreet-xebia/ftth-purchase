@@ -4,7 +4,7 @@ import { responseType } from '../../interface/responseType.interface';
 import fiberPlansService from '../../services/fiberPlansServices/fiberPlansService';
 import { SUCCESS } from '../../services/apisConstants';
 import { errorsAr, errorsEn } from '@/constants/errorConstants';
-import { errorTranslations } from '@/pages/utilities/errorTranslations';
+import errorTranslations from '@/pages/utilities/errorTranslations';
 
 const getFiberPlans = async (): Promise<responseType<FiberPlanDTO[]>> => {
   return trackPromise(
