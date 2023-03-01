@@ -3,7 +3,7 @@ import { responseType } from '../../interface/responseType.interface';
 import fiberPlansService from '../../services/fiberPlansServices/fiberPlansService';
 import { FAILURE, RESPONSE_ERROR, SUCCESS } from '../../services/apisConstants';
 import { FiberPendingNewOrderResponse } from './type';
-import { errorTranslations } from '@/pages/utilities/errorTranslations';
+import errorTranslations from '@/pages/utilities/errorTranslations';
 import { errorsAr, errorsEn } from '@/constants/errorConstants';
 
 const fiberPendingNewOrder = async (

@@ -3,7 +3,7 @@ import { responseType } from '../../interface/responseType.interface';
 import { FAILURE, RESPONSE_ERROR, SUCCESS } from '../../services/apisConstants';
 import { FiberOrderResponse } from '../fiberPlans/type';
 import fiberRegistrationService from '../../services/fiberRegistrationServices/fiberRegistrationService';
-import { errorTranslations } from '@/pages/utilities/errorTranslations';
+import errorTranslations from '@/pages/utilities/errorTranslations';
 import { errorsAr, errorsEn } from '@/constants/errorConstants';
 
 const verifyMobileNumber = async (

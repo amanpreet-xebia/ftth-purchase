@@ -1,5 +1,5 @@
 import { errorsAr, errorsEn } from '@/constants/errorConstants';
-import { errorTranslations } from '@/pages/utilities/errorTranslations';
+import errorTranslations from '@/pages/utilities/errorTranslations';
 import { trackPromise } from 'react-promise-tracker';
 import { responseType } from '../../interface/responseType.interface';
 import { FAILURE, RESPONSE_ERROR, SUCCESS } from '../../services/apisConstants';

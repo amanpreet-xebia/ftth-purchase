@@ -2,7 +2,7 @@ import { trackPromise } from 'react-promise-tracker';
 import { responseType } from '../../interface/responseType.interface';
 import fiberPlansService from '../../services/fiberPlansServices/fiberPlansService';
 import { SUCCESS } from '../../services/apisConstants';
-import { errorTranslations } from '@/pages/utilities/errorTranslations';
+import errorTranslations from '@/pages/utilities/errorTranslations';
 import { errorsAr, errorsEn } from '@/constants/errorConstants';
 
 const getTimeSlot = async (orderId: any): Promise<responseType<any>> => {
